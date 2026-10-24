@@ -6,7 +6,7 @@
 <a href="https://github.com/VireonNoctis"><img src="https://img.shields.io/badge/GitHub-VireonNoctis-111827?style=for-the-badge&logo=github&logoColor=EAF6FF" alt="GitHub"/></a>
 <a href="https://t.me/Imperialism12"><img src="https://img.shields.io/badge/Telegram-%40Imperialism12-111827?style=for-the-badge&logo=telegram&logoColor=8AD7FF" alt="Telegram"/></a>
 <a href="https://discord.com/users/1419744000977403994"><img src="https://img.shields.io/badge/Discord-Profile-111827?style=for-the-badge&logo=discord&logoColor=B7B5FF" alt="Discord"/></a>
-<a href="https://lunarx.to/Profile/vvvx"><img src="https://img.shields.io/badge/Lunar%20X-Profile-111827?style=for-the-badge&logo=moonrepo&logoColor=9AD9FF" alt="Lunar X"/></a>
+<a href="https://lunarx.to/"><img src="https://img.shields.io/badge/Lunar%20X-Profile-111827?style=for-the-badge&logo=moonrepo&logoColor=9AD9FF" alt="Lunar X"/></a>
 </p>
 <p>
 <a href="https://anilist.co/user/Vireon"><img src="https://img.shields.io/badge/AniList-Vireon-111827?style=flat-square&logo=anilist&logoColor=8AA8FF" alt="AniList"/></a>
