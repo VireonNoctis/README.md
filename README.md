@@ -22,6 +22,8 @@ I enjoy building useful software, understanding how systems work, and polishing 
 
 Outside code: anime, music, rabbit holes, and an unreasonable number of open tabs.
 
+> **Main line:** “Things I can’t leave alone.” Build with curiosity, improve with intent, and keep the details honest.
+
 ## 02 — The toolkit
 
 ### Languages & automation
@@ -30,6 +32,11 @@ Outside code: anime, music, rabbit holes, and an unreasonable number of open tab
 
 ### Frameworks, data & tooling
 <p><img src="https://skillicons.dev/icons?i=nextjs,react,postgres,sqlite,docker,git,github&perline=7&theme=dark" alt="Next.js, React, PostgreSQL, SQLite, Docker, Git and GitHub"/> <img src="https://img.shields.io/badge/ScyllaDB-0B1324?style=for-the-badge&logo=scylladb&logoColor=9AD9FF" alt="ScyllaDB"/></p>
+
+### Editors & terminal
+<p><img src="https://img.shields.io/badge/Terminal%20%2F%20CLI-0B1324?style=for-the-badge&logo=windowsterminal&logoColor=9AD9FF" alt="Terminal and command-line tools"/> <img src="https://img.shields.io/badge/Vim-0B1324?style=for-the-badge&logo=vim&logoColor=019733" alt="Vim"/> <img src="https://img.shields.io/badge/Neovim-0B1324?style=for-the-badge&logo=neovim&logoColor=57A143" alt="Neovim"/> <img src="https://img.shields.io/badge/Visual%20Studio%20Code-0B1324?style=for-the-badge&logo=visualstudiocode&logoColor=007ACC" alt="Visual Studio Code"/></p>
+
+Comfortable using the terminal for navigation, Git, scripts, and command-line workflows; Vim and Neovim for keyboard-driven editing; and VS Code for navigating, editing, and debugging projects.
 
 > **The rule:** pick the tool for the problem, learn what you don't know, and don't mistake a long badge list for finished learning.
 
@@ -40,8 +47,28 @@ These are planned explorations, not claims of proficiency.
 
 ## 03 — Projects
 <table>
-<tr><td width="50%" valign="top"><h3><a href="https://lunarx.to/">Lunar X</a></h3>Community and anime, manga and Novel focused platform work, profile features,Gacha Games, Casino and Alot more and the systems behind them.</td><td width="50%" valign="top"><h3><a href="https://github.com/VireonNoctis/PrivaCage">PrivaCage</a></h3>A privacy-focused project in my GitHub workspace.</td></tr>
-<tr><td width="50%" valign="top"><h3><a href="https://github.com/VireonNoctis/VireonNoctis.github.io">Vireon Noctis</a></h3>My personal digital archive for software, anime, music, and ongoing experiments.</td><td width="50%" valign="top"><h3><a href="https://github.com/Kyerstorm/Lemegeton">Lemegeton</a></h3>Discord bot and community systems; one of the projects I contribute to.</td></tr>
+<tr>
+<td width="50%" valign="top">
+<h3><a href="https://lunarx.to/">Lunar X</a></h3>
+A community and media platform centred on anime, manga, and novel discovery, with profile features, progression, games, and the supporting systems behind them.
+</td>
+<td width="50%" valign="top">
+<h3><a href="https://github.com/VireonNoctis/PrivaCage">PrivaCage</a></h3>
+<strong>“Understand what your device exposes. Block what you can. Know what you cannot.”</strong><br/>
+A local-first privacy auditing project spanning Android and Windows: tracker intelligence, local app and metadata checks, Android DNS/VPN work, reversible Windows policy controls, and a Svelte + Rust web console. It is explicit about platform limits and does not promise anonymity.
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+<h3><a href="https://github.com/VireonNoctis/VireonNoctis.github.io">Vireon Noctis</a></h3>
+My personal digital archive for software, anime, music, live listening activity, and ongoing experiments — built around the line “Things I can’t leave alone.”
+</td>
+<td width="50%" valign="top">
+<h3><a href="https://github.com/Kyerstorm/Lemegeton">Lemegeton</a></h3>
+<strong>“One bot. Many communities. More ways to discover.”</strong><br/>
+A multi-guild Discord bot combining AniList-linked profiles, anime/manga/light-novel/general-novel browsing, recommendations, Steam discovery, leaderboards, custom roles, per-server dashboards, moderation utilities, notifications, and automatic GitHub commit updates.
+</td>
+</tr>
 </table>
 
 ## 04 — GitHub, in motion
