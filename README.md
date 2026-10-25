@@ -40,7 +40,7 @@ These are planned explorations, not claims of proficiency.
 
 ## 03 — Projects
 <table>
-<tr><td width="50%" valign="top"><h3><a href="https://lunarx.to/">Lunar X</a></h3>Community and anime-focused platform work, profile features, and the systems behind them.</td><td width="50%" valign="top"><h3><a href="https://github.com/VireonNoctis/PrivaCage">PrivaCage</a></h3>A privacy-focused project in my GitHub workspace.</td></tr>
+<tr><td width="50%" valign="top"><h3><a href="https://lunarx.to/">Lunar X</a></h3>Community and anime, manga and Novel focused platform work, profile features,Gacha Games, Casino and Alot more and the systems behind them.</td><td width="50%" valign="top"><h3><a href="https://github.com/VireonNoctis/PrivaCage">PrivaCage</a></h3>A privacy-focused project in my GitHub workspace.</td></tr>
 <tr><td width="50%" valign="top"><h3><a href="https://github.com/VireonNoctis/VireonNoctis.github.io">Vireon Noctis</a></h3>My personal digital archive for software, anime, music, and ongoing experiments.</td><td width="50%" valign="top"><h3><a href="https://github.com/Kyerstorm/Lemegeton">Lemegeton</a></h3>Discord bot and community systems; one of the projects I contribute to.</td></tr>
 </table>
 
