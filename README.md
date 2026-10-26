@@ -93,7 +93,11 @@ The stacks above reflect the repository manifests and project documentation chec
 These entries are refreshed automatically from GitHub repository metadata. Descriptions come from each repository's GitHub settings; the stack lists languages detected by GitHub, not a claim about every framework or dependency.
 
 <!-- AUTO-REPOSITORIES:START -->
-<!-- The repository updater replaces only the content between these markers. -->
+| Repository | Description | GitHub-detected languages | Updated |
+| --- | --- | --- | --- |
+| [PrivaCage](https://github.com/VireonNoctis/PrivaCage) | Know what every app is doing to your device. Right now. In real time. | Kotlin, Rust, Go, CSS, Svelte, TypeScript, HTML | 2026-10-26 |
+| [Lunar-Css](https://github.com/VireonNoctis/Lunar-Css) | All of my Lunar Marketplace css in one Repo. | CSS | 2026-10-23 |
+| [Wasting-Time-on.](https://github.com/VireonNoctis/Wasting-Time-on.) | Just stuff that i waste time on. | Batchfile, TypeScript, R, Python, HTML | 2026-09-24 |
 <!-- AUTO-REPOSITORIES:END -->
 
 Project-specific framework stacks and status notes are documented in the curated project cards above.
