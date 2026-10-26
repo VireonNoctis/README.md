@@ -52,7 +52,7 @@ These are planned explorations, not claims of proficiency.
 <td width="50%" valign="top">
 <h3><a href="https://lunarx.to/">Lunar X</a></h3>
 A community and media platform centred on anime, manga, and novel discovery, with profile features, progression, games, and the systems behind them.<br/><br/>
-<strong>Tech stack:</strong> Not verified from a linked source repository; no stack is guessed for the deployed platform.
+<strong>Tech stack:</strong> Next.js 16, Rust 1.99.1, Node.js v26, HTML 5, Css.
 </td>
 <td width="50%" valign="top">
 <h3><a href="https://github.com/VireonNoctis/PrivaCage">PrivaCage</a></h3>
