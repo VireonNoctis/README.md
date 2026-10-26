@@ -46,27 +46,44 @@ Comfortable using the terminal for navigation, Git, scripts, and command-line wo
 These are planned explorations, not claims of proficiency.
 
 ## 03 — Projects
+
 <table>
 <tr>
 <td width="50%" valign="top">
 <h3><a href="https://lunarx.to/">Lunar X</a></h3>
-A community and media platform centred on anime, manga, and novel discovery, with profile features, progression, games, and the supporting systems behind them.
+A community and media platform centred on anime, manga, and novel discovery, with profile features, progression, games, and the systems behind them.<br/><br/>
+<strong>Tech stack:</strong> Not verified from a linked source repository; no stack is guessed for the deployed platform.
 </td>
 <td width="50%" valign="top">
 <h3><a href="https://github.com/VireonNoctis/PrivaCage">PrivaCage</a></h3>
 <strong>“Understand what your device exposes. Block what you can. Know what you cannot.”</strong><br/>
-A local-first privacy auditing project spanning Android and Windows: tracker intelligence, local app and metadata checks, Android DNS/VPN work, reversible Windows policy controls, and a Svelte + Rust web console. It is explicit about platform limits and does not promise anonymity.
+A local-first privacy auditing project spanning Android and Windows: tracker intelligence, APK and permission checks, Android DNS/VPN work, reversible Windows policy controls, and a Svelte + Rust web console. It is explicit about platform limits and does not promise anonymity.<br/><br/>
+<strong>Tech stack:</strong> Kotlin/JVM + Gradle · Rust · Go · Svelte 5 · TypeScript · Vite · Axum · Tokio.
 </td>
 </tr>
 <tr>
 <td width="50%" valign="top">
 <h3><a href="https://github.com/VireonNoctis/VireonNoctis.github.io">Vireon Noctis</a></h3>
-My personal digital archive for software, anime, music, live listening activity, and ongoing experiments — built around the line “Things I can’t leave alone.”
+My personal digital archive for software, anime, music, live listening activity, and ongoing experiments — built around the line “Things I can’t leave alone.”<br/><br/>
+<strong>Tech stack:</strong> Next.js 15 · React 19 · TypeScript · CSS · Framer Motion · Lucide · Rust/Axum companion API · GitHub Actions · GitHub Pages.
 </td>
 <td width="50%" valign="top">
 <h3><a href="https://github.com/Kyerstorm/Lemegeton">Lemegeton</a></h3>
 <strong>“One bot. Many communities. More ways to discover.”</strong><br/>
-A multi-guild Discord bot combining AniList-linked profiles, anime/manga/light-novel/general-novel browsing, recommendations, Steam discovery, leaderboards, custom roles, per-server dashboards, moderation utilities, notifications, and automatic GitHub commit updates.
+A multi-guild Discord bot combining AniList-linked profiles, anime/manga/light-novel/general-novel browsing, recommendations, Steam discovery, leaderboards, custom roles, per-server dashboards, moderation utilities, notifications, and automated GitHub commit updates.<br/><br/>
+<strong>Tech stack:</strong> Python 3.13+ · discord.py · aiohttp · SQLite/PostgreSQL clients · Rust · React 19 · TypeScript · Vite · Docker.
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+<h3><a href="https://github.com/VireonNoctis/Driftglass">DriftGlass</a> <sub>PRIVATE · EARLY PROTOTYPE</sub></h3>
+A privacy-first application-update auditor designed to compare observable behaviour between two app versions in controlled environments and produce reproducible evidence of what changed. The project is in an early prototype stage; several planned collection, comparison, reporting, and dashboard components are not implemented yet.<br/><br/>
+<strong>Tech stack:</strong> Rust · Cargo workspace · Python 3.11+ · JSON Schema (<code>jsonschema</code>) · pytest · GitHub Actions CI.<br/>
+<em>The repository is currently private, so the link is only accessible to users with permission.</em>
+</td>
+<td width="50%" valign="top">
+<h3>Tech stacks, not guesses</h3>
+The stacks above reflect the repository manifests and project documentation checked for this README. Where a project does not link to its source repository, its implementation stack is left unclaimed rather than inferred.
 </td>
 </tr>
 </table>
