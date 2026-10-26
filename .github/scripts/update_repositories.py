@@ -32,12 +32,16 @@ def main():
         raise SystemExit('GH_TOKEN or GITHUB_TOKEN is required')
     repos = []
     page = 1
+    has_private_access = bool(os.environ.get('GH_REPOS_TOKEN'))
+    endpoint = '/user/repos' if has_private_access else '/users/' + urllib.parse.quote(OWNER) + '/repos'
     while page <= 10:
-        query = urllib.parse.urlencode({
-            'visibility': 'all', 'affiliation': 'owner',
-            'per_page': 100, 'sort': 'updated', 'page': page,
-        })
-        batch = request_json(API + '/user/repos?' + query, token)
+        params = {'per_page': 100, 'sort': 'updated', 'page': page}
+        if has_private_access:
+            params.update({'visibility': 'all', 'affiliation': 'owner'})
+        else:
+            params.update({'type': 'owner'})
+        query = urllib.parse.urlencode(params)
+        batch = request_json(API + endpoint + '?' + query, token)
         if not batch:
             break
         repos.extend(batch)
