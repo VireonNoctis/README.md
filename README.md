@@ -88,6 +88,16 @@ The stacks above reflect the repository manifests and project documentation chec
 </tr>
 </table>
 
+## 03.5 — Latest GitHub repositories
+
+These entries are refreshed automatically from GitHub repository metadata. Descriptions come from each repository's GitHub settings; the stack lists languages detected by GitHub, not a claim about every framework or dependency.
+
+<!-- AUTO-REPOSITORIES:START -->
+<!-- The repository updater replaces only the content between these markers. -->
+<!-- AUTO-REPOSITORIES:END -->
+
+Project-specific framework stacks and status notes are documented in the curated project cards above.
+
 ## 04 — GitHub, in motion
 <div align="center">
 <a href="https://github.com/VireonNoctis"><img height="165" src="https://github-readme-stats.vercel.app/api?username=VireonNoctis&show_icons=true&hide_border=true&include_all_commits=true&bg_color=050914&title_color=9AD9FF&text_color=C8D7EB&icon_color=8A9CFF" alt="GitHub account statistics"/></a>
