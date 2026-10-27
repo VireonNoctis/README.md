@@ -95,7 +95,12 @@ These entries are refreshed automatically from GitHub repository metadata. Descr
 <!-- AUTO-REPOSITORIES:START -->
 | Repository | Description | GitHub-detected languages | Updated |
 | --- | --- | --- | --- |
-| [PrivaCage](https://github.com/VireonNoctis/PrivaCage) | Know what every app is doing to your device. Right now. In real time. | Kotlin, Rust, Go, CSS, Svelte, TypeScript, HTML | 2026-10-26 |
+| [PrivaCage](https://github.com/VireonNoctis/PrivaCage) | Know what every app is doing to your device. Right now. In real time. | Kotlin, Rust, Go, TypeScript, Svelte, CSS, HTML | 2026-10-27 |
+| [SkillTether](https://github.com/VireonNoctis/SkillTether) | A localization and integrity-testing tool for AI Agent Skills that translates SKILL.md packages into multiple languages while checking that critical instructions, safety constraints, tool names, commands, and decision rules retain their original meaning. | Python | 2026-10-27 |
+| [TreeParity](https://github.com/VireonNoctis/TreeParity) | An open-source conformance-testing laboratory that measures exactly what happens to a directory tree when it is transferred between operating systems, filesystems, archive formats, and synchronization tools. | Not detected | 2026-10-26 |
+| [Envquake](https://github.com/VireonNoctis/Envquake) | A CLI that discovers hidden environmental assumptions in software by rerunning tests under controlled variations of the system environment, identifying the exact conditions that cause behaviour to change. | Not detected | 2026-10-26 |
+| [FormatFossil](https://github.com/VireonNoctis/FormatFossil) | A file-conversion forensics laboratory that tests what actually survives when files move between formats and software versions. | Not detected | 2026-10-26 |
+| [EchoFossil](https://github.com/VireonNoctis/EchoFossil) | A Forensic tool that maps how AI-generated material propagates through datasets, identifying likely recursive synthetic-data contamination, near-duplicate clusters, and uncertain content origins. | Not detected | 2026-10-26 |
 | [Lunar-Css](https://github.com/VireonNoctis/Lunar-Css) | All of my Lunar Marketplace css in one Repo. | CSS | 2026-10-23 |
 | [Wasting-Time-on.](https://github.com/VireonNoctis/Wasting-Time-on.) | Just stuff that i waste time on. | Batchfile, TypeScript, R, Python, HTML | 2026-09-24 |
 <!-- AUTO-REPOSITORIES:END -->
