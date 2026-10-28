@@ -117,7 +117,7 @@ Project-specific framework stacks and status notes are documented in the curated
 
 ### Codebase footprint · automatically refreshed
 
-A measurable snapshot of the text-based code and documentation across public, original repositories. This is a current repository footprint—not a claim that every line was written by one person.
+A measurable snapshot of the text-based code and documentation across public repositories I own or contribute to, including collaborative projects such as Lemegeton. These are whole-repository footprint totals, not a claim that every line was written by one person.
 
 <!-- AUTO-CODE-STATS:START -->
 **Last scan:** 2026-10-28 UTC · 13 public repositories scanned (12 owned, 1 contributed).
