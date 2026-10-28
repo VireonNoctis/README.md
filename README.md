@@ -168,7 +168,7 @@ A measurable snapshot of the text-based code and documentation across public rep
 | Go module | 2 | 6 | 140 | 8 |
 | Properties | 1 | 2 | 117 | 14 |
 
-**Lunar X — supplied project estimates**
+**Lunar X — project estimates**
 
 | Subsystem | Stack | Lines |
 | --- | --- | ---: |
