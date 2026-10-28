@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate an honest, repeatable source/documentation footprint for public owned repos."""
+"""Generate a repeatable footprint for public repositories owned or contributed to."""
 from __future__ import annotations
 
 import concurrent.futures
@@ -7,7 +7,6 @@ import datetime as dt
 import json
 import os
 import re
-import shutil
 import subprocess
 import tempfile
 import urllib.error
@@ -19,11 +18,15 @@ OWNER = os.environ.get("GITHUB_OWNER", "VireonNoctis")
 TOKEN = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
 README_PATH = Path(os.environ.get("README_PATH", "README.md"))
 STATS_JSON_PATH = Path(os.environ.get("STATS_JSON_PATH", "code-stats.json"))
+REPO_CONFIG_PATH = Path(os.environ.get("REPO_CONFIG_PATH", ".github/code_stats_repositories.json"))
 START = "<!-- AUTO-CODE-STATS:START -->"
 END = "<!-- AUTO-CODE-STATS:END -->"
 API = "https://api.github.com"
 MAX_FILE_BYTES = 1_000_000
-MAX_REPOSITORIES = 100
+MAX_OWNED_REPOSITORIES = 100
+MAX_AUTO_DISCOVERED_REPOSITORIES = 15
+MAX_TOTAL_REPOSITORIES = 120
+REPO_SLUG = re.compile(r"^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$")
 EXCLUDED_DIRS = {
     ".git", ".next", ".nuxt", ".turbo", ".cache", ".venv", "venv",
     "node_modules", "vendor", "dist", "build", "out", "target", "coverage",
@@ -53,6 +56,7 @@ TEXT_FILENAMES = {
     ".env.example", ".npmrc", ".gitmodules", ".prettierrc", ".eslintrc",
 }
 WORD_PATTERN = re.compile(r"\S+")
+COUNT_KEYS = ("files", "lines", "nonblankLines", "characters", "words", "stars", "forks")
 
 
 def request_json(url: str) -> object:
@@ -68,6 +72,25 @@ def request_json(url: str) -> object:
         return json.load(response)
 
 
+def mark_repository(repo: dict, relationship: str, note: str = "") -> dict:
+    item = dict(repo)
+    item["_stats_relationship"] = relationship
+    if note:
+        item["_contribution_note"] = note
+    return item
+
+
+def is_scannable_public_repository(repo: dict) -> bool:
+    return (
+        not repo.get("private")
+        and not repo.get("archived")
+        and not repo.get("disabled")
+        and bool(repo.get("default_branch"))
+        and bool(repo.get("clone_url"))
+        and bool(repo.get("full_name"))
+    )
+
+
 def owned_public_repositories() -> list[dict]:
     items: list[dict] = []
     for page in range(1, 11):
@@ -81,13 +104,129 @@ def owned_public_repositories() -> list[dict]:
                 continue
             if repo.get("private") or repo.get("fork") or repo.get("archived") or repo.get("disabled"):
                 continue
-            if not repo.get("default_branch") or not repo.get("clone_url"):
+            if not is_scannable_public_repository(repo):
                 continue
-            items.append(repo)
+            items.append(mark_repository(repo, "owned", "Repository owned by the account."))
         if len(batch) < 100:
             break
     items.sort(key=lambda item: item.get("updated_at", ""), reverse=True)
-    return items[:MAX_REPOSITORIES]
+    return items[:MAX_OWNED_REPOSITORIES]
+
+
+def configured_contributor_repositories() -> tuple[list[dict], list[str]]:
+    if not REPO_CONFIG_PATH.exists():
+        print(f"No contributor config found at {REPO_CONFIG_PATH}; using automatic discovery only.")
+        return [], []
+    try:
+        config = json.loads(REPO_CONFIG_PATH.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as error:
+        return [], [f"Contributor config: {type(error).__name__}"]
+
+    configured = config.get("contributorRepositories", []) if isinstance(config, dict) else []
+    if not isinstance(configured, list):
+        return [], ["Contributor config: contributorRepositories must be a list"]
+
+    items: list[dict] = []
+    errors: list[str] = []
+    seen: set[str] = set()
+    for entry in configured:
+        full_name = entry.get("fullName", "") if isinstance(entry, dict) else str(entry)
+        note = entry.get("note", "") if isinstance(entry, dict) else ""
+        if not REPO_SLUG.fullmatch(full_name):
+            errors.append(f"Invalid configured repository slug: {full_name!r}")
+            continue
+        key = full_name.lower()
+        if key in seen or key.split("/", 1)[0] == OWNER.lower():
+            continue
+        seen.add(key)
+        try:
+            owner, name = full_name.split("/", 1)
+            repo = request_json(f"{API}/repos/{urllib.parse.quote(owner)}/{urllib.parse.quote(name)}")
+            if not isinstance(repo, dict) or not is_scannable_public_repository(repo):
+                errors.append(f"{full_name}: repository is private, archived, disabled, or unavailable")
+                continue
+            items.append(mark_repository(
+                repo,
+                "contributor",
+                str(note).strip() or "Explicitly listed contributor project.",
+            ))
+        except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError, ValueError) as error:
+            errors.append(f"{full_name}: {type(error).__name__}")
+    return items, errors
+
+
+def discover_authored_commit_repositories(excluded: set[str]) -> tuple[list[dict], str | None]:
+    """Discover public external repositories with commits attributed to the configured GitHub login."""
+    discovered: dict[str, dict] = {}
+    try:
+        for page in range(1, 4):
+            query = urllib.parse.urlencode({
+                "q": f"author:{OWNER}",
+                "per_page": 100,
+                "page": page,
+                "sort": "committer-date",
+                "order": "desc",
+            })
+            payload = request_json(f"{API}/search/commits?{query}")
+            if not isinstance(payload, dict):
+                break
+            matches = payload.get("items", [])
+            if not isinstance(matches, list) or not matches:
+                break
+            for match in matches:
+                repo = match.get("repository") if isinstance(match, dict) else None
+                if not isinstance(repo, dict):
+                    continue
+                full_name = str(repo.get("full_name", ""))
+                key = full_name.lower()
+                if not REPO_SLUG.fullmatch(full_name) or key in excluded:
+                    continue
+                if (repo.get("owner") or {}).get("login", "").lower() == OWNER.lower():
+                    continue
+                if repo.get("private") or repo.get("archived") or repo.get("disabled"):
+                    continue
+                # Search results normally include the repository's clone URL and default branch.
+                if not repo.get("clone_url") or not repo.get("default_branch"):
+                    owner, name = full_name.split("/", 1)
+                    repo = request_json(f"{API}/repos/{urllib.parse.quote(owner)}/{urllib.parse.quote(name)}")
+                if not isinstance(repo, dict) or not is_scannable_public_repository(repo):
+                    continue
+                discovered[key] = mark_repository(
+                    repo,
+                    "contributor",
+                    f"Public commits attributed to {OWNER} were found by GitHub search.",
+                )
+                if len(discovered) >= MAX_AUTO_DISCOVERED_REPOSITORIES:
+                    break
+            if len(discovered) >= MAX_AUTO_DISCOVERED_REPOSITORIES or len(matches) < 100:
+                break
+    except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError, ValueError, KeyError) as error:
+        # Manual contributor entries remain effective even if search is throttled or unavailable.
+        return list(discovered.values()), f"{type(error).__name__}: automatic contributor discovery was incomplete"
+    return list(discovered.values()), None
+
+
+def collect_repositories() -> tuple[list[dict], list[str], str | None]:
+    owned = owned_public_repositories()
+    owned_keys = {str(repo["full_name"]).lower() for repo in owned}
+    configured, config_errors = configured_contributor_repositories()
+    excluded = owned_keys | {str(repo["full_name"]).lower() for repo in configured}
+    discovered, discovery_warning = discover_authored_commit_repositories(excluded)
+    candidates = owned + configured + discovered
+
+    # Deduplicate by full repository name, preferring an owned or explicitly configured entry.
+    unique: dict[str, dict] = {}
+    for repo in candidates:
+        key = str(repo.get("full_name", "")).lower()
+        if not key:
+            continue
+        if key not in unique or (
+            unique[key].get("_stats_relationship") != "owned"
+            and repo.get("_contribution_note", "").startswith("Explicitly listed")
+        ):
+            unique[key] = repo
+    result = list(unique.values())[:MAX_TOTAL_REPOSITORIES]
+    return result, config_errors, discovery_warning
 
 
 def include_path(raw_path: str) -> bool:
@@ -131,16 +270,17 @@ def count_worktree(repo_dir: Path) -> dict[str, int]:
         counts["files"] += 1
         counts["lines"] += len(lines)
         counts["nonblankLines"] += sum(1 for line in lines if line.strip())
-        # Character totals include spaces and punctuation but exclude line-break characters.
+        # Characters include spaces and punctuation but exclude line-break characters.
         counts["characters"] += sum(len(line) for line in lines)
         counts["words"] += len(WORD_PATTERN.findall(normalized))
     return counts
 
 
 def scan_repository(repo: dict, root: Path) -> tuple[dict | None, str | None]:
-    name = str(repo.get("name", "repository"))
+    full_name = str(repo.get("full_name", repo.get("name", "repository")))
     branch = str(repo.get("default_branch", ""))
-    destination = root / re.sub(r"[^A-Za-z0-9_.-]", "_", name)
+    destination_name = re.sub(r"[^A-Za-z0-9_.-]", "_", full_name.replace("/", "--"))
+    destination = root / destination_name
     clone_url = str(repo.get("clone_url", ""))
     try:
         subprocess.run(
@@ -149,15 +289,22 @@ def scan_repository(repo: dict, root: Path) -> tuple[dict | None, str | None]:
         )
         counts = count_worktree(destination)
         return ({
-            "name": name,
+            "name": str(repo.get("name", full_name.split("/")[-1])),
+            "fullName": full_name,
             "url": str(repo.get("html_url", "")),
             "branch": branch,
+            "relationship": repo.get("_stats_relationship", "owned"),
+            "contributionNote": repo.get("_contribution_note", ""),
             **counts,
             "stars": int(repo.get("stargazers_count") or 0),
             "forks": int(repo.get("forks_count") or 0),
         }, None)
     except (OSError, subprocess.SubprocessError) as error:
-        return (None, f"{name}: {type(error).__name__}")
+        return (None, f"{full_name}: {type(error).__name__}")
+
+
+def sum_counts(repositories: list[dict]) -> dict[str, int]:
+    return {key: sum(int(item.get(key, 0)) for item in repositories) for key in COUNT_KEYS}
 
 
 def number(value: int) -> str:
@@ -172,11 +319,14 @@ def build_readme_block(stats: dict) -> str:
     totals = stats["totals"]
     generated_date = (stats.get("generatedAt") or "")[:10] or "date unavailable"
     rows = [
-        f"**Last scan:** {generated_date} UTC · {number(totals['repositories'])} public repositories scanned.",
+        f"**Last scan:** {generated_date} UTC · {number(totals['repositories'])} public repositories scanned "
+        f"({number(totals['ownedRepositories'])} owned, {number(totals['contributorRepositories'])} contributed).",
         "",
         "| Measure | Current total |",
         "| --- | ---: |",
         f"| Public repositories scanned | {number(totals['repositories'])} |",
+        f"| Owned repositories scanned | {number(totals['ownedRepositories'])} |",
+        f"| Contributor repositories scanned | {number(totals['contributorRepositories'])} |",
         f"| Repositories with scan failures | {number(totals['failedRepositories'])} |",
         f"| Tracked text files | {number(totals['files'])} |",
         f"| Lines (including blank lines) | {number(totals['lines'])} |",
@@ -186,35 +336,63 @@ def build_readme_block(stats: dict) -> str:
         f"| Stars across scanned projects | {number(totals['stars'])} |",
         f"| Forks across scanned projects | {number(totals['forks'])} |",
     ]
+
     projects = sorted(stats.get("repositories", []), key=lambda item: item.get("characters", 0), reverse=True)[:8]
     if projects:
         rows.extend([
             "",
             "**Largest current text footprints**",
             "",
-            "| Project | Files | Lines | Characters |",
-            "| --- | ---: | ---: | ---: |",
+            "| Project | Relationship | Files | Lines | Characters |",
+            "| --- | --- | ---: | ---: | ---: |",
         ])
         for project in projects:
             name = markdown_cell(project.get("name", "Repository"))
             url = project.get("url", "")
+            relationship = "Owned" if project.get("relationship") == "owned" else "Contributor project"
             rows.append(
-                f"| [{name}]({url}) | {number(project['files'])} | {number(project['lines'])} | {number(project['characters'])} |"
+                f"| [{name}]({url}) | {relationship} | {number(project['files'])} | "
+                f"{number(project['lines'])} | {number(project['characters'])} |"
             )
+
+    contributed = sorted(
+        (item for item in stats.get("repositories", []) if item.get("relationship") == "contributor"),
+        key=lambda item: item.get("characters", 0),
+        reverse=True,
+    )
+    if contributed:
+        rows.extend([
+            "",
+            "**Contributor projects included**",
+            "",
+            "| Project | Tracked files | Lines | Characters |",
+            "| --- | ---: | ---: | ---: |",
+        ])
+        for project in contributed:
+            name = markdown_cell(project.get("name", "Repository"))
+            url = project.get("url", "")
+            rows.append(
+                f"| [{name}]({url}) | {number(project['files'])} | "
+                f"{number(project['lines'])} | {number(project['characters'])} |"
+            )
+
     rows.extend([
         "",
         f"_Scope: {markdown_cell(stats['scope'])}_",
     ])
+    if stats.get("discoveryWarning"):
+        rows.append(f"_Contributor discovery note: {markdown_cell(stats['discoveryWarning'])}_")
     return "\n".join(rows)
 
 
 def main() -> None:
     if not TOKEN:
         raise SystemExit("GH_TOKEN or GITHUB_TOKEN is required")
-    repos = owned_public_repositories()
+    repos, config_errors, discovery_warning = collect_repositories()
     if not repos:
         raise SystemExit("No eligible public repositories were returned; refusing to publish zeroed metrics")
-    errors: list[str] = []
+
+    errors: list[str] = list(config_errors)
     scanned: list[dict] = []
     with tempfile.TemporaryDirectory(prefix="vireon-code-stats-") as temporary:
         root = Path(temporary)
@@ -224,28 +402,47 @@ def main() -> None:
                 result, error = future.result()
                 if result:
                     scanned.append(result)
-                    print(f"Counted {result['name']}: {result['files']} files, {result['lines']} lines")
+                    print(
+                        f"Counted {result['fullName']} ({result['relationship']}): "
+                        f"{result['files']} files, {result['lines']} lines"
+                    )
                 elif error:
                     errors.append(error)
                     print(f"Skipped {error}")
+
     scanned.sort(key=lambda item: item.get("characters", 0), reverse=True)
-    keys = ("files", "lines", "nonblankLines", "characters", "words", "stars", "forks")
-    totals = {key: sum(int(item.get(key, 0)) for item in scanned) for key in keys}
+    owned_scanned = [item for item in scanned if item.get("relationship") == "owned"]
+    contributed_scanned = [item for item in scanned if item.get("relationship") == "contributor"]
+    totals = sum_counts(scanned)
     totals["repositories"] = len(scanned)
+    totals["ownedRepositories"] = len(owned_scanned)
+    totals["contributorRepositories"] = len(contributed_scanned)
     totals["failedRepositories"] = len(errors)
+
+    all_keys = ("files", "lines", "nonblankLines", "characters", "words", "stars", "forks")
+    def category_totals(items: list[dict]) -> dict[str, int]:
+        result = sum_counts(items)
+        result["repositories"] = len(items)
+        return result
+
     stats = {
-        "schemaVersion": 1,
+        "schemaVersion": 2,
         "owner": OWNER,
         "generatedAt": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z"),
         "scope": (
-            "Default-branch snapshots of public, non-fork, non-archived repositories owned by "
-            f"{OWNER}. Counts cover tracked text-based source, configuration and documentation; "
-            "dependency/build/generated directories, lockfiles, binary files and files over 1 MB are excluded. "
-            "These are current codebase-footprint totals, not a line-by-line authorship attribution."
+            f"Current default-branch snapshots of eligible public repositories owned by {OWNER} plus public external "
+            "repositories explicitly listed as contributor projects or discovered through commits attributed to the "
+            "GitHub login. Counts cover tracked text-based source, configuration, and documentation; dependency/build/"
+            "generated directories, lockfiles, binary files, and files over 1 MB are excluded. These repository-wide "
+            "footprint totals are not line-by-line authorship attribution."
         ),
+        "discoveryWarning": discovery_warning,
         "totals": totals,
+        "ownedTotals": category_totals(owned_scanned),
+        "contributedTotals": category_totals(contributed_scanned),
         "repositories": scanned,
         "scanErrors": len(errors),
+        "scanErrorDetails": errors,
     }
     STATS_JSON_PATH.write_text(json.dumps(stats, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     if not README_PATH.exists():
@@ -257,7 +454,11 @@ def main() -> None:
     _, after = remainder.split(END, 1)
     updated = before + START + "\n" + build_readme_block(stats) + "\n" + END + after
     README_PATH.write_text(updated, encoding="utf-8", newline="\n")
-    print(f"Published footprint for {totals['repositories']} repositories; {totals['failedRepositories']} scan failures.")
+    print(
+        f"Published footprint for {totals['repositories']} repositories "
+        f"({totals['ownedRepositories']} owned, {totals['contributorRepositories']} contributed); "
+        f"{totals['failedRepositories']} scan failures."
+    )
 
 
 if __name__ == "__main__":
