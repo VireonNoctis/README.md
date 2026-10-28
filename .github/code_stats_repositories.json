@@ -2,7 +2,38 @@
   "contributorRepositories": [
     {
       "fullName": "Kyerstorm/Lemegeton",
-      "note": "Active contribution project; scan its current default branch alongside repositories owned by VireonNoctis."
+      "role": "Major contributor · co-owner",
+      "note": "Major contributor and co-owner of the project; scan the current multi-guild default branch alongside repositories owned by VireonNoctis."
+    }
+  ],
+  "manualProjectEstimates": [
+    {
+      "id": "lunar-x",
+      "name": "Lunar X",
+      "url": "https://lunarx.to/",
+      "classification": "User-provided line-count estimate for a project without a public scannable repository. Counts are displayed separately and are not mixed into automated GitHub repository totals.",
+      "areas": [
+        {
+          "name": "Backend",
+          "stack": "Rust",
+          "lines": 265856
+        },
+        {
+          "name": "Frontend",
+          "stack": "Next.js",
+          "lines": 309274
+        },
+        {
+          "name": "Gacha games",
+          "stack": "React",
+          "lines": 40751
+        },
+        {
+          "name": "Scraping & other tools",
+          "stack": "Python",
+          "lines": 20865
+        }
+      ]
     }
   ]
 }
