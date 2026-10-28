@@ -129,10 +129,10 @@ A measurable snapshot of the text-based code and documentation across public rep
 | Contributor repositories scanned | 1 |
 | Repositories with scan failures | 1 |
 | Tracked text files | 690 |
-| Lines (including blank lines) | 205,709 |
-| Non-blank lines | 179,240 |
-| Characters (excluding line breaks) | 9,287,479 |
-| Words | 883,380 |
+| Lines (including blank lines) | 206,621 |
+| Non-blank lines | 180,150 |
+| Characters (excluding line breaks) | 9,307,589 |
+| Words | 885,268 |
 | Stars across scanned projects | 3 |
 | Forks across scanned projects | 1 |
 
@@ -144,13 +144,13 @@ A measurable snapshot of the text-based code and documentation across public rep
 | Batch | 4 | 20,568 | 759,435 | 68,460 |
 | Kotlin | 92 | 19,339 | 853,270 | 68,952 |
 | CSS | 37 | 15,127 | 578,521 | 52,929 |
-| Markdown | 113 | 12,664 | 1,243,145 | 176,545 |
-| TypeScript | 43 | 11,183 | 361,379 | 29,420 |
+| Markdown | 113 | 12,696 | 1,244,471 | 176,876 |
+| TypeScript | 43 | 11,185 | 361,416 | 29,430 |
 | Rust | 35 | 9,391 | 457,452 | 33,856 |
 | R | 1 | 5,814 | 72,809 | 7,710 |
 | Go | 14 | 4,729 | 192,344 | 20,750 |
 | JavaScript | 3 | 4,220 | 208,968 | 22,612 |
-| JSON | 25 | 2,572 | 85,118 | 6,737 |
+| JSON | 25 | 3,450 | 103,865 | 8,284 |
 | Plain text | 14 | 1,951 | 103,396 | 15,522 |
 | Ruby | 1 | 1,709 | 111,231 | 11,742 |
 | YAML | 21 | 1,363 | 46,543 | 4,077 |
@@ -168,7 +168,7 @@ A measurable snapshot of the text-based code and documentation across public rep
 | Go module | 2 | 6 | 140 | 8 |
 | Properties | 1 | 2 | 117 | 14 |
 
-**Lunar X — project estimates**
+**Lunar X — supplied project estimates**
 
 | Subsystem | Stack | Lines |
 | --- | --- | ---: |
@@ -186,11 +186,11 @@ _User-provided line-count estimate for a project without a public scannable repo
 | [Lemegeton](https://github.com/Kyerstorm/Lemegeton) | Major contributor · co-owner | 230 | 98,861 | 4,419,734 |
 | [PrivaCage](https://github.com/VireonNoctis/PrivaCage) | Repository owner | 246 | 48,342 | 2,603,139 |
 | [Wasting-Time-on.](https://github.com/VireonNoctis/Wasting-Time-on.) | Repository owner | 32 | 35,010 | 1,017,178 |
-| [VireonNoctis.github.io](https://github.com/VireonNoctis/VireonNoctis.github.io) | Repository owner | 94 | 4,954 | 399,885 |
+| [VireonNoctis.github.io](https://github.com/VireonNoctis/VireonNoctis.github.io) | Repository owner | 94 | 4,956 | 399,922 |
 | [Universe-Explorer](https://github.com/VireonNoctis/Universe-Explorer) | Repository owner | 5 | 3,482 | 251,594 |
 | [Lunar-Css](https://github.com/VireonNoctis/Lunar-Css) | Repository owner | 13 | 7,090 | 212,935 |
 | [SkillTether](https://github.com/VireonNoctis/SkillTether) | Repository owner | 27 | 3,401 | 170,453 |
-| [VireonNoctis](https://github.com/VireonNoctis/VireonNoctis) | Repository owner | 7 | 1,320 | 59,010 |
+| [VireonNoctis](https://github.com/VireonNoctis/VireonNoctis) | Repository owner | 7 | 2,230 | 79,083 |
 
 **Contributor projects included**
 
