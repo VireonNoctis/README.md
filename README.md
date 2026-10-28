@@ -95,8 +95,9 @@ These entries are refreshed automatically from GitHub repository metadata. Descr
 <!-- AUTO-REPOSITORIES:START -->
 | Repository | Description | GitHub-detected languages | Updated |
 | --- | --- | --- | --- |
-| [PrivaCage](https://github.com/VireonNoctis/PrivaCage) | Know what every app is doing to your device. Right now. In real time. | Kotlin, Rust, Go, TypeScript, Svelte, CSS, HTML | 2026-10-27 |
-| [SkillTether](https://github.com/VireonNoctis/SkillTether) | A localization and integrity-testing tool for AI Agent Skills that translates SKILL.md packages into multiple languages while checking that critical instructions, safety constraints, tool names, commands, and decision rules retain their original meaning. | Python | 2026-10-27 |
+| [Universe-Explorer](https://github.com/VireonNoctis/Universe-Explorer) | Astra is a space-themed interactive astronomy explorer. | Ruby, JavaScript, CSS | 2026-10-28 |
+| [PrivaCage](https://github.com/VireonNoctis/PrivaCage) | Know what every app is doing to your device. Right now. In real time. | Kotlin, Rust, Go, TypeScript, Svelte, CSS, HTML | 2026-10-28 |
+| [SkillTether](https://github.com/VireonNoctis/SkillTether) | Translate the words. Preserve the intent. | Python | 2026-10-27 |
 | [TreeParity](https://github.com/VireonNoctis/TreeParity) | An open-source conformance-testing laboratory that measures exactly what happens to a directory tree when it is transferred between operating systems, filesystems, archive formats, and synchronization tools. | Not detected | 2026-10-26 |
 | [Envquake](https://github.com/VireonNoctis/Envquake) | A CLI that discovers hidden environmental assumptions in software by rerunning tests under controlled variations of the system environment, identifying the exact conditions that cause behaviour to change. | Not detected | 2026-10-26 |
 | [FormatFossil](https://github.com/VireonNoctis/FormatFossil) | A file-conversion forensics laboratory that tests what actually survives when files move between formats and software versions. | Not detected | 2026-10-26 |
@@ -119,7 +120,33 @@ Project-specific framework stacks and status notes are documented in the curated
 A measurable snapshot of the text-based code and documentation across public, original repositories. This is a current repository footprint—not a claim that every line was written by one person.
 
 <!-- AUTO-CODE-STATS:START -->
-_Code metrics are awaiting the first automated scan._
+**Last scan:** 2026-10-28 UTC · 12 public repositories scanned.
+
+| Measure | Current total |
+| --- | ---: |
+| Public repositories scanned | 12 |
+| Tracked text files | 448 |
+| Lines (including blank lines) | 102,454 |
+| Non-blank lines | 89,082 |
+| Characters (excluding line breaks) | 4,298,219 |
+| Words | 411,711 |
+| Stars across scanned projects | 1 |
+| Forks across scanned projects | 0 |
+
+**Largest current text footprints**
+
+| Project | Files | Lines | Characters |
+| --- | ---: | ---: | ---: |
+| [PrivaCage](https://github.com/VireonNoctis/PrivaCage) | 235 | 47,233 | 2,219,758 |
+| [Wasting-Time-on.](https://github.com/VireonNoctis/Wasting-Time-on.) | 32 | 35,010 | 1,017,178 |
+| [VireonNoctis.github.io](https://github.com/VireonNoctis/VireonNoctis.github.io) | 94 | 3,683 | 340,448 |
+| [Lunar-Css](https://github.com/VireonNoctis/Lunar-Css) | 13 | 7,090 | 212,935 |
+| [SkillTether](https://github.com/VireonNoctis/SkillTether) | 27 | 3,401 | 170,453 |
+| [Universe-Explorer](https://github.com/VireonNoctis/Universe-Explorer) | 5 | 2,186 | 153,221 |
+| [Anilist-Css](https://github.com/VireonNoctis/Anilist-Css) | 12 | 1,412 | 40,617 |
+| [VireonNoctis](https://github.com/VireonNoctis/VireonNoctis) | 6 | 602 | 30,675 |
+
+_Scope: Default-branch snapshots of public, non-fork, non-archived repositories owned by VireonNoctis. Counts cover tracked text-based source, configuration and documentation; dependency/build/generated directories, lockfiles, binary files and files over 1 MB are excluded. These are current codebase-footprint totals, not a line-by-line authorship attribution._
 <!-- AUTO-CODE-STATS:END -->
 
 ### Contribution trail
