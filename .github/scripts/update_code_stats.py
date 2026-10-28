@@ -287,7 +287,7 @@ def count_worktree(repo_dir: Path) -> dict:
     )
     counts = {"files": 0, "lines": 0, "nonblankLines": 0, "characters": 0, "words": 0}
     language_counts: dict[str, dict[str, int | str]] = {}
-    for encoded_path in result.stdout.split(b"\\0"):
+    for encoded_path in result.stdout.split(b"\0"):
         if not encoded_path:
             continue
         relative = os.fsdecode(encoded_path)
@@ -300,12 +300,12 @@ def count_worktree(repo_dir: Path) -> dict:
             if file_path.stat().st_size > MAX_FILE_BYTES:
                 continue
             raw = file_path.read_bytes()
-            if b"\\0" in raw:
+            if b"\0" in raw:
                 continue
             text = raw.decode("utf-8-sig")
         except (OSError, UnicodeError):
             continue
-        normalized = text.replace("\\r\\n", "\\n").replace("\\r", "\\n")
+        normalized = text.replace("\r\n", "\n").replace("\r", "\n")
         lines = normalized.splitlines()
         file_counts = {
             "files": 1,
