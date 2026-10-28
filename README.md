@@ -129,10 +129,10 @@ A measurable snapshot of the text-based code and documentation across public rep
 | Contributor repositories scanned | 1 |
 | Repositories with scan failures | 1 |
 | Tracked text files | 690 |
-| Lines (including blank lines) | 202,800 |
-| Non-blank lines | 176,494 |
-| Characters (excluding line breaks) | 9,133,633 |
-| Words | 869,538 |
+| Lines (including blank lines) | 202,906 |
+| Non-blank lines | 176,598 |
+| Characters (excluding line breaks) | 9,145,281 |
+| Words | 871,032 |
 | Stars across scanned projects | 3 |
 | Forks across scanned projects | 1 |
 
@@ -144,10 +144,10 @@ A measurable snapshot of the text-based code and documentation across public rep
 | [PrivaCage](https://github.com/VireonNoctis/PrivaCage) | Owned | 246 | 48,342 | 2,603,139 |
 | [Wasting-Time-on.](https://github.com/VireonNoctis/Wasting-Time-on.) | Owned | 32 | 35,010 | 1,017,178 |
 | [VireonNoctis.github.io](https://github.com/VireonNoctis/VireonNoctis.github.io) | Owned | 94 | 4,039 | 355,507 |
+| [Universe-Explorer](https://github.com/VireonNoctis/Universe-Explorer) | Owned | 5 | 2,995 | 213,097 |
 | [Lunar-Css](https://github.com/VireonNoctis/Lunar-Css) | Owned | 13 | 7,090 | 212,935 |
-| [Universe-Explorer](https://github.com/VireonNoctis/Universe-Explorer) | Owned | 5 | 2,889 | 201,452 |
 | [SkillTether](https://github.com/VireonNoctis/SkillTether) | Owned | 27 | 3,401 | 170,453 |
-| [VireonNoctis](https://github.com/VireonNoctis/VireonNoctis) | Owned | 7 | 1,081 | 48,926 |
+| [VireonNoctis](https://github.com/VireonNoctis/VireonNoctis) | Owned | 7 | 1,081 | 48,929 |
 
 **Contributor projects included**
 
