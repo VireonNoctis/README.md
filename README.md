@@ -120,34 +120,42 @@ Project-specific framework stacks and status notes are documented in the curated
 A measurable snapshot of the text-based code and documentation across public, original repositories. This is a current repository footprint—not a claim that every line was written by one person.
 
 <!-- AUTO-CODE-STATS:START -->
-**Last scan:** 2026-10-28 UTC · 12 public repositories scanned.
+**Last scan:** 2026-10-28 UTC · 13 public repositories scanned (12 owned, 1 contributed).
 
 | Measure | Current total |
 | --- | ---: |
-| Public repositories scanned | 12 |
+| Public repositories scanned | 13 |
+| Owned repositories scanned | 12 |
+| Contributor repositories scanned | 1 |
 | Repositories with scan failures | 1 |
-| Tracked text files | 459 |
-| Lines (including blank lines) | 104,280 |
-| Non-blank lines | 90,850 |
-| Characters (excluding line breaks) | 4,714,609 |
-| Words | 473,329 |
-| Stars across scanned projects | 1 |
-| Forks across scanned projects | 0 |
+| Tracked text files | 690 |
+| Lines (including blank lines) | 202,588 |
+| Non-blank lines | 176,286 |
+| Characters (excluding line breaks) | 9,117,033 |
+| Words | 868,158 |
+| Stars across scanned projects | 3 |
+| Forks across scanned projects | 1 |
 
 **Largest current text footprints**
 
-| Project | Files | Lines | Characters |
-| --- | ---: | ---: | ---: |
-| [PrivaCage](https://github.com/VireonNoctis/PrivaCage) | 246 | 48,342 | 2,603,139 |
-| [Wasting-Time-on.](https://github.com/VireonNoctis/Wasting-Time-on.) | 32 | 35,010 | 1,017,178 |
-| [VireonNoctis.github.io](https://github.com/VireonNoctis/VireonNoctis.github.io) | 94 | 3,977 | 351,851 |
-| [Lunar-Css](https://github.com/VireonNoctis/Lunar-Css) | 13 | 7,090 | 212,935 |
-| [SkillTether](https://github.com/VireonNoctis/SkillTether) | 27 | 3,401 | 170,453 |
-| [Universe-Explorer](https://github.com/VireonNoctis/Universe-Explorer) | 5 | 2,426 | 169,565 |
-| [Anilist-Css](https://github.com/VireonNoctis/Anilist-Css) | 12 | 1,412 | 40,617 |
-| [VireonNoctis](https://github.com/VireonNoctis/VireonNoctis) | 6 | 785 | 35,937 |
+| Project | Relationship | Files | Lines | Characters |
+| --- | --- | ---: | ---: | ---: |
+| [Lemegeton](https://github.com/Kyerstorm/Lemegeton) | Contributor project | 230 | 97,699 | 4,370,492 |
+| [PrivaCage](https://github.com/VireonNoctis/PrivaCage) | Owned | 246 | 48,342 | 2,603,139 |
+| [Wasting-Time-on.](https://github.com/VireonNoctis/Wasting-Time-on.) | Owned | 32 | 35,010 | 1,017,178 |
+| [VireonNoctis.github.io](https://github.com/VireonNoctis/VireonNoctis.github.io) | Owned | 94 | 3,977 | 351,851 |
+| [Lunar-Css](https://github.com/VireonNoctis/Lunar-Css) | Owned | 13 | 7,090 | 212,935 |
+| [Universe-Explorer](https://github.com/VireonNoctis/Universe-Explorer) | Owned | 5 | 2,824 | 191,894 |
+| [SkillTether](https://github.com/VireonNoctis/SkillTether) | Owned | 27 | 3,401 | 170,453 |
+| [VireonNoctis](https://github.com/VireonNoctis/VireonNoctis) | Owned | 7 | 996 | 45,540 |
 
-_Scope: Default-branch snapshots of public, non-fork, non-archived repositories owned by VireonNoctis. Counts cover tracked text-based source, configuration and documentation; dependency/build/generated directories, lockfiles, binary files and files over 1 MB are excluded. These are current codebase-footprint totals, not a line-by-line authorship attribution._
+**Contributor projects included**
+
+| Project | Tracked files | Lines | Characters |
+| --- | ---: | ---: | ---: |
+| [Lemegeton](https://github.com/Kyerstorm/Lemegeton) | 230 | 97,699 | 4,370,492 |
+
+_Scope: Current default-branch snapshots of eligible public repositories owned by VireonNoctis plus public external repositories explicitly listed as contributor projects or discovered through commits attributed to the GitHub login. Counts cover tracked text-based source, configuration, and documentation; dependency/build/generated directories, lockfiles, binary files, and files over 1 MB are excluded. These repository-wide footprint totals are not line-by-line authorship attribution._
 <!-- AUTO-CODE-STATS:END -->
 
 ### Contribution trail
