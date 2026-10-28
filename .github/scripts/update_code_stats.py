@@ -56,6 +56,34 @@ TEXT_FILENAMES = {
     ".env.example", ".npmrc", ".gitmodules", ".prettierrc", ".eslintrc",
 }
 WORD_PATTERN = re.compile(r"\S+")
+LANGUAGE_BY_EXTENSION = {
+    ".rs": "Rust", ".ts": "TypeScript", ".tsx": "TypeScript", ".mts": "TypeScript", ".cts": "TypeScript",
+    ".js": "JavaScript", ".jsx": "JavaScript", ".mjs": "JavaScript", ".cjs": "JavaScript",
+    ".py": "Python", ".pyi": "Python", ".go": "Go", ".kt": "Kotlin", ".kts": "Kotlin",
+    ".java": "Java", ".rb": "Ruby", ".r": "R", ".lua": "Lua", ".swift": "Swift", ".dart": "Dart",
+    ".cpp": "C++", ".cc": "C++", ".cxx": "C++", ".hpp": "C++", ".hh": "C++", ".h": "C/C++ header", ".c": "C",
+    ".php": "PHP", ".cs": "C#", ".vb": "Visual Basic", ".fs": "F#", ".fsx": "F#",
+    ".css": "CSS", ".scss": "SCSS", ".sass": "SCSS", ".less": "Less",
+    ".html": "HTML", ".htm": "HTML", ".svelte": "Svelte", ".vue": "Vue", ".astro": "Astro",
+    ".json": "JSON", ".jsonc": "JSONC", ".json5": "JSON5", ".yaml": "YAML", ".yml": "YAML",
+    ".toml": "TOML", ".ini": "INI / config", ".cfg": "INI / config", ".conf": "Config",
+    ".sql": "SQL", ".graphql": "GraphQL", ".gql": "GraphQL", ".proto": "Protocol Buffers",
+    ".xml": "XML", ".svg": "SVG", ".xaml": "XAML", ".properties": "Properties",
+    ".sh": "Shell", ".bash": "Shell", ".zsh": "Shell", ".ps1": "PowerShell", ".bat": "Batch", ".cmd": "Batch",
+    ".md": "Markdown", ".mdx": "MDX", ".rst": "reStructuredText", ".txt": "Plain text",
+    ".tf": "Terraform (HCL)", ".hcl": "HCL", ".nix": "Nix", ".ipynb": "Jupyter Notebook",
+    ".ex": "Elixir", ".exs": "Elixir", ".erl": "Erlang", ".hrl": "Erlang",
+    ".clj": "Clojure", ".cljs": "ClojureScript", ".cljc": "Clojure", ".scala": "Scala", ".sc": "Scala",
+    ".pl": "Perl", ".m": "Objective-C", ".mm": "Objective-C++", ".make": "Makefile", ".gradle": "Gradle",
+    ".mod": "Go module",
+}
+LANGUAGE_BY_FILENAME = {
+    "readme": "Markdown", "license": "Plain text", "copying": "Plain text",
+    "dockerfile": "Dockerfile", "makefile": "Makefile", "justfile": "Justfile",
+    "procfile": "Config", ".gitignore": "Git config", ".gitattributes": "Git config",
+    ".dockerignore": "Docker config", ".editorconfig": "EditorConfig", ".env.example": "Environment config",
+    ".npmrc": "NPM config", ".gitmodules": "Git config", ".prettierrc": "JSON config", ".eslintrc": "JSON config",
+}
 COUNT_KEYS = ("files", "lines", "nonblankLines", "characters", "words", "stars", "forks")
 
 
@@ -72,11 +100,12 @@ def request_json(url: str) -> object:
         return json.load(response)
 
 
-def mark_repository(repo: dict, relationship: str, note: str = "") -> dict:
+def mark_repository(repo: dict, relationship: str, note: str = "", role: str = "") -> dict:
     item = dict(repo)
     item["_stats_relationship"] = relationship
     if note:
         item["_contribution_note"] = note
+    item["_contribution_role"] = role or ("Repository owner" if relationship == "owned" else "Contributor")
     return item
 
 
@@ -132,6 +161,7 @@ def configured_contributor_repositories() -> tuple[list[dict], list[str]]:
     for entry in configured:
         full_name = entry.get("fullName", "") if isinstance(entry, dict) else str(entry)
         note = entry.get("note", "") if isinstance(entry, dict) else ""
+        role = entry.get("role", "") if isinstance(entry, dict) else ""
         if not REPO_SLUG.fullmatch(full_name):
             errors.append(f"Invalid configured repository slug: {full_name!r}")
             continue
@@ -149,6 +179,7 @@ def configured_contributor_repositories() -> tuple[list[dict], list[str]]:
                 repo,
                 "contributor",
                 str(note).strip() or "Explicitly listed contributor project.",
+                str(role).strip() or "Major contributor",
             ))
         except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError, ValueError) as error:
             errors.append(f"{full_name}: {type(error).__name__}")
@@ -241,13 +272,22 @@ def include_path(raw_path: str) -> bool:
     return path.suffix.lower() in TEXT_EXTENSIONS
 
 
-def count_worktree(repo_dir: Path) -> dict[str, int]:
+def language_for_path(raw_path: str) -> str:
+    path = PurePosixPath(raw_path)
+    filename = path.name.lower()
+    if filename in LANGUAGE_BY_FILENAME:
+        return LANGUAGE_BY_FILENAME[filename]
+    return LANGUAGE_BY_EXTENSION.get(path.suffix.lower(), "Other text/config")
+
+
+def count_worktree(repo_dir: Path) -> dict:
     result = subprocess.run(
         ["git", "-C", str(repo_dir), "ls-files", "-z"],
         check=True, capture_output=True, timeout=30,
     )
     counts = {"files": 0, "lines": 0, "nonblankLines": 0, "characters": 0, "words": 0}
-    for encoded_path in result.stdout.split(b"\0"):
+    language_counts: dict[str, dict[str, int | str]] = {}
+    for encoded_path in result.stdout.split(b"\\0"):
         if not encoded_path:
             continue
         relative = os.fsdecode(encoded_path)
@@ -260,20 +300,35 @@ def count_worktree(repo_dir: Path) -> dict[str, int]:
             if file_path.stat().st_size > MAX_FILE_BYTES:
                 continue
             raw = file_path.read_bytes()
-            if b"\0" in raw:
+            if b"\\0" in raw:
                 continue
             text = raw.decode("utf-8-sig")
         except (OSError, UnicodeError):
             continue
-        normalized = text.replace("\r\n", "\n").replace("\r", "\n")
+        normalized = text.replace("\\r\\n", "\\n").replace("\\r", "\\n")
         lines = normalized.splitlines()
-        counts["files"] += 1
-        counts["lines"] += len(lines)
-        counts["nonblankLines"] += sum(1 for line in lines if line.strip())
-        # Characters include spaces and punctuation but exclude line-break characters.
-        counts["characters"] += sum(len(line) for line in lines)
-        counts["words"] += len(WORD_PATTERN.findall(normalized))
-    return counts
+        file_counts = {
+            "files": 1,
+            "lines": len(lines),
+            "nonblankLines": sum(1 for line in lines if line.strip()),
+            "characters": sum(len(line) for line in lines),
+            "words": len(WORD_PATTERN.findall(normalized)),
+        }
+        for key, value in file_counts.items():
+            counts[key] += value
+        language = language_for_path(relative)
+        bucket = language_counts.setdefault(language, {
+            "language": language, "files": 0, "lines": 0, "nonblankLines": 0, "characters": 0, "words": 0,
+        })
+        for key, value in file_counts.items():
+            bucket[key] = int(bucket[key]) + value
+
+    languages = sorted(
+        language_counts.values(),
+        key=lambda item: (int(item["lines"]), int(item["characters"])),
+        reverse=True,
+    )
+    return {**counts, "languages": languages}
 
 
 def scan_repository(repo: dict, root: Path) -> tuple[dict | None, str | None]:
@@ -294,6 +349,7 @@ def scan_repository(repo: dict, root: Path) -> tuple[dict | None, str | None]:
             "url": str(repo.get("html_url", "")),
             "branch": branch,
             "relationship": repo.get("_stats_relationship", "owned"),
+            "role": repo.get("_contribution_role", "Repository owner" if repo.get("_stats_relationship", "owned") == "owned" else "Contributor"),
             "contributionNote": repo.get("_contribution_note", ""),
             **counts,
             "stars": int(repo.get("stargazers_count") or 0),
@@ -305,6 +361,57 @@ def scan_repository(repo: dict, root: Path) -> tuple[dict | None, str | None]:
 
 def sum_counts(repositories: list[dict]) -> dict[str, int]:
     return {key: sum(int(item.get(key, 0)) for item in repositories) for key in COUNT_KEYS}
+
+
+def aggregate_languages(repositories: list[dict]) -> list[dict]:
+    totals: dict[str, dict[str, int | str]] = {}
+    for repo in repositories:
+        for language in repo.get("languages", []):
+            name = str(language.get("language", "Other text/config"))
+            bucket = totals.setdefault(name, {
+                "language": name, "files": 0, "lines": 0, "nonblankLines": 0, "characters": 0, "words": 0,
+            })
+            for key in ("files", "lines", "nonblankLines", "characters", "words"):
+                bucket[key] = int(bucket[key]) + int(language.get(key, 0))
+    return sorted(totals.values(), key=lambda item: (int(item["lines"]), int(item["characters"])), reverse=True)
+
+
+def load_manual_project_estimates() -> list[dict]:
+    try:
+        config = json.loads(REPO_CONFIG_PATH.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return []
+    estimates = config.get("manualProjectEstimates", []) if isinstance(config, dict) else []
+    if not isinstance(estimates, list):
+        return []
+    valid: list[dict] = []
+    for estimate in estimates:
+        if not isinstance(estimate, dict) or not isinstance(estimate.get("areas"), list):
+            continue
+        areas = []
+        for area in estimate["areas"]:
+            if not isinstance(area, dict):
+                continue
+            try:
+                line_count = int(area.get("lines"))
+            except (TypeError, ValueError):
+                continue
+            if line_count < 0:
+                continue
+            areas.append({
+                "name": str(area.get("name", "Unnamed area")),
+                "stack": str(area.get("stack", "Unspecified")),
+                "lines": line_count,
+            })
+        if areas:
+            valid.append({
+                "id": str(estimate.get("id", "manual-estimate")),
+                "name": str(estimate.get("name", "Unpublished project")),
+                "url": str(estimate.get("url", "")),
+                "classification": str(estimate.get("classification", "User-provided estimate; not scanned automatically.")),
+                "areas": areas,
+            })
+    return valid
 
 
 def number(value: int) -> str:
@@ -337,19 +444,49 @@ def build_readme_block(stats: dict) -> str:
         f"| Forks across scanned projects | {number(totals['forks'])} |",
     ]
 
+    languages = stats.get("languages", [])
+    if languages:
+        rows.extend([
+            "",
+            "**Language and file-format footprint**",
+            "",
+            "| Language / format | Files | Lines | Characters | Words |",
+            "| --- | ---: | ---: | ---: | ---: |",
+        ])
+        for language in languages:
+            rows.append(
+                "| " + markdown_cell(language["language"]) + " | " + number(language["files"]) + " | "
+                + number(language["lines"]) + " | " + number(language["characters"]) + " | " + number(language["words"]) + " |"
+            )
+
+    estimates = stats.get("manualProjectEstimates", [])
+    for estimate in estimates:
+        rows.extend([
+            "",
+            "**" + markdown_cell(estimate["name"]) + " — supplied project estimates**",
+            "",
+            "| Subsystem | Stack | Lines |",
+            "| --- | --- | ---: |",
+        ])
+        for area in estimate.get("areas", []):
+            rows.append("| " + markdown_cell(area["name"]) + " | " + markdown_cell(area["stack"]) + " | " + number(area["lines"]) + " |")
+        reported_total = sum(int(area["lines"]) for area in estimate.get("areas", []))
+        rows.append("| **Reported total** | | **" + number(reported_total) + "** |")
+        rows.append("_" + markdown_cell(estimate.get("classification", "User-provided estimate; not scanned automatically.")) + "_")
+
     projects = sorted(stats.get("repositories", []), key=lambda item: item.get("characters", 0), reverse=True)[:8]
     if projects:
         rows.extend([
             "",
             "**Largest current text footprints**",
             "",
-            "| Project | Relationship | Files | Lines | Characters |",
+            "| Project | Relationship / role | Files | Lines | Characters |",
             "| --- | --- | ---: | ---: | ---: |",
         ])
         for project in projects:
             name = markdown_cell(project.get("name", "Repository"))
             url = project.get("url", "")
-            relationship = "Owned" if project.get("relationship") == "owned" else "Contributor project"
+            relationship = markdown_cell(project.get("role") or ("Repository owner" if project.get("relationship") == "owned" else "Contributor"))
             rows.append(
                 f"| [{name}]({url}) | {relationship} | {number(project['files'])} | "
                 f"{number(project['lines'])} | {number(project['characters'])} |"
@@ -365,14 +502,14 @@ def build_readme_block(stats: dict) -> str:
             "",
             "**Contributor projects included**",
             "",
-            "| Project | Tracked files | Lines | Characters |",
-            "| --- | ---: | ---: | ---: |",
+            "| Project | Role | Tracked files | Lines | Characters |",
+            "| --- | --- | ---: | ---: | ---: |",
         ])
         for project in contributed:
             name = markdown_cell(project.get("name", "Repository"))
             url = project.get("url", "")
             rows.append(
-                f"| [{name}]({url}) | {number(project['files'])} | "
+                f"| [{name}]({url}) | {markdown_cell(project.get('role') or 'Major contributor')} | {number(project['files'])} | "
                 f"{number(project['lines'])} | {number(project['characters'])} |"
             )
 
@@ -426,7 +563,7 @@ def main() -> None:
         return result
 
     stats = {
-        "schemaVersion": 2,
+        "schemaVersion": 3,
         "owner": OWNER,
         "generatedAt": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z"),
         "scope": (
@@ -434,12 +571,15 @@ def main() -> None:
             "repositories explicitly listed as contributor projects or discovered through commits attributed to the "
             "GitHub login. Counts cover tracked text-based source, configuration, and documentation; dependency/build/"
             "generated directories, lockfiles, binary files, and files over 1 MB are excluded. These repository-wide "
-            "footprint totals are not line-by-line authorship attribution."
+            "footprint totals are not line-by-line authorship attribution. Language counts follow tracked file "
+            "extensions; manually supplied project estimates are kept separate from repository scans."
         ),
         "discoveryWarning": discovery_warning,
         "totals": totals,
         "ownedTotals": category_totals(owned_scanned),
         "contributedTotals": category_totals(contributed_scanned),
+        "languages": aggregate_languages(scanned),
+        "manualProjectEstimates": load_manual_project_estimates(),
         "repositories": scanned,
         "scanErrors": len(errors),
         "scanErrorDetails": errors,
