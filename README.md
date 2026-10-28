@@ -128,13 +128,45 @@ A measurable snapshot of the text-based code and documentation across public rep
 | Owned repositories scanned | 12 |
 | Contributor repositories scanned | 1 |
 | Repositories with scan failures | 1 |
-| Tracked text files | 0 |
-| Lines (including blank lines) | 0 |
-| Non-blank lines | 0 |
-| Characters (excluding line breaks) | 0 |
-| Words | 0 |
+| Tracked text files | 690 |
+| Lines (including blank lines) | 205,709 |
+| Non-blank lines | 179,240 |
+| Characters (excluding line breaks) | 9,287,479 |
+| Words | 883,380 |
 | Stars across scanned projects | 3 |
 | Forks across scanned projects | 1 |
+
+**Language and file-format footprint**
+
+| Language / format | Files | Lines | Characters | Words |
+| --- | ---: | ---: | ---: | ---: |
+| Python | 191 | 92,411 | 4,042,415 | 350,367 |
+| Batch | 4 | 20,568 | 759,435 | 68,460 |
+| Kotlin | 92 | 19,339 | 853,270 | 68,952 |
+| CSS | 37 | 15,127 | 578,521 | 52,929 |
+| Markdown | 113 | 12,664 | 1,243,145 | 176,545 |
+| TypeScript | 43 | 11,183 | 361,379 | 29,420 |
+| Rust | 35 | 9,391 | 457,452 | 33,856 |
+| R | 1 | 5,814 | 72,809 | 7,710 |
+| Go | 14 | 4,729 | 192,344 | 20,750 |
+| JavaScript | 3 | 4,220 | 208,968 | 22,612 |
+| JSON | 25 | 2,572 | 85,118 | 6,737 |
+| Plain text | 14 | 1,951 | 103,396 | 15,522 |
+| Ruby | 1 | 1,709 | 111,231 | 11,742 |
+| YAML | 21 | 1,363 | 46,543 | 4,077 |
+| Svelte | 3 | 1,116 | 57,554 | 4,615 |
+| HTML | 3 | 431 | 19,426 | 1,406 |
+| TOML | 14 | 240 | 6,210 | 912 |
+| Environment config | 2 | 233 | 10,367 | 1,026 |
+| Shell | 3 | 193 | 6,791 | 623 |
+| SVG | 57 | 117 | 60,624 | 4,316 |
+| Git config | 4 | 109 | 1,505 | 173 |
+| Config | 3 | 86 | 2,842 | 214 |
+| XML | 2 | 63 | 3,420 | 162 |
+| Dockerfile | 1 | 52 | 2,262 | 212 |
+| Docker config | 1 | 20 | 195 | 20 |
+| Go module | 2 | 6 | 140 | 8 |
+| Properties | 1 | 2 | 117 | 14 |
 
 **Lunar X — supplied project estimates**
 
@@ -151,20 +183,20 @@ _User-provided line-count estimate for a project without a public scannable repo
 
 | Project | Relationship / role | Files | Lines | Characters |
 | --- | --- | ---: | ---: | ---: |
-| [VireonNoctis](https://github.com/VireonNoctis/VireonNoctis) | Repository owner | 0 | 0 | 0 |
-| [SkillTether](https://github.com/VireonNoctis/SkillTether) | Repository owner | 0 | 0 | 0 |
-| [Universe-Explorer](https://github.com/VireonNoctis/Universe-Explorer) | Repository owner | 0 | 0 | 0 |
-| [VireonNoctis.github.io](https://github.com/VireonNoctis/VireonNoctis.github.io) | Repository owner | 0 | 0 | 0 |
-| [PrivaCage](https://github.com/VireonNoctis/PrivaCage) | Repository owner | 0 | 0 | 0 |
-| [FormatFossil](https://github.com/VireonNoctis/FormatFossil) | Repository owner | 0 | 0 | 0 |
-| [Envquake](https://github.com/VireonNoctis/Envquake) | Repository owner | 0 | 0 | 0 |
-| [TreeParity](https://github.com/VireonNoctis/TreeParity) | Repository owner | 0 | 0 | 0 |
+| [Lemegeton](https://github.com/Kyerstorm/Lemegeton) | Major contributor · co-owner | 230 | 98,861 | 4,419,734 |
+| [PrivaCage](https://github.com/VireonNoctis/PrivaCage) | Repository owner | 246 | 48,342 | 2,603,139 |
+| [Wasting-Time-on.](https://github.com/VireonNoctis/Wasting-Time-on.) | Repository owner | 32 | 35,010 | 1,017,178 |
+| [VireonNoctis.github.io](https://github.com/VireonNoctis/VireonNoctis.github.io) | Repository owner | 94 | 4,954 | 399,885 |
+| [Universe-Explorer](https://github.com/VireonNoctis/Universe-Explorer) | Repository owner | 5 | 3,482 | 251,594 |
+| [Lunar-Css](https://github.com/VireonNoctis/Lunar-Css) | Repository owner | 13 | 7,090 | 212,935 |
+| [SkillTether](https://github.com/VireonNoctis/SkillTether) | Repository owner | 27 | 3,401 | 170,453 |
+| [VireonNoctis](https://github.com/VireonNoctis/VireonNoctis) | Repository owner | 7 | 1,320 | 59,010 |
 
 **Contributor projects included**
 
 | Project | Role | Tracked files | Lines | Characters |
 | --- | --- | ---: | ---: | ---: |
-| [Lemegeton](https://github.com/Kyerstorm/Lemegeton) | Major contributor · co-owner | 0 | 0 | 0 |
+| [Lemegeton](https://github.com/Kyerstorm/Lemegeton) | Major contributor · co-owner | 230 | 98,861 | 4,419,734 |
 
 _Scope: Current default-branch snapshots of eligible public repositories owned by VireonNoctis plus public external repositories explicitly listed as contributor projects or discovered through commits attributed to the GitHub login. Counts cover tracked text-based source, configuration, and documentation; dependency/build/generated directories, lockfiles, binary files, and files over 1 MB are excluded. These repository-wide footprint totals are not line-by-line authorship attribution. Language counts follow tracked file extensions; manually supplied project estimates are kept separate from repository scans._
 <!-- AUTO-CODE-STATS:END -->
