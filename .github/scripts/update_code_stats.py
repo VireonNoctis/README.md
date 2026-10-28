@@ -177,6 +177,7 @@ def build_readme_block(stats: dict) -> str:
         "| Measure | Current total |",
         "| --- | ---: |",
         f"| Public repositories scanned | {number(totals['repositories'])} |",
+        f"| Repositories with scan failures | {number(totals['failedRepositories'])} |",
         f"| Tracked text files | {number(totals['files'])} |",
         f"| Lines (including blank lines) | {number(totals['lines'])} |",
         f"| Non-blank lines | {number(totals['nonblankLines'])} |",
