@@ -128,34 +128,45 @@ A measurable snapshot of the text-based code and documentation across public rep
 | Owned repositories scanned | 12 |
 | Contributor repositories scanned | 1 |
 | Repositories with scan failures | 1 |
-| Tracked text files | 690 |
-| Lines (including blank lines) | 202,906 |
-| Non-blank lines | 176,598 |
-| Characters (excluding line breaks) | 9,145,281 |
-| Words | 871,032 |
+| Tracked text files | 0 |
+| Lines (including blank lines) | 0 |
+| Non-blank lines | 0 |
+| Characters (excluding line breaks) | 0 |
+| Words | 0 |
 | Stars across scanned projects | 3 |
 | Forks across scanned projects | 1 |
 
+**Lunar X — supplied project estimates**
+
+| Subsystem | Stack | Lines |
+| --- | --- | ---: |
+| Backend | Rust | 265,856 |
+| Frontend | Next.js | 309,274 |
+| Gacha games | React | 40,751 |
+| Scraping & other tools | Python | 20,865 |
+| **Reported total** | | **636,746** |
+_User-provided line-count estimate for a project without a public scannable repository. Counts are displayed separately and are not mixed into automated GitHub repository totals._
+
 **Largest current text footprints**
 
-| Project | Relationship | Files | Lines | Characters |
+| Project | Relationship / role | Files | Lines | Characters |
 | --- | --- | ---: | ---: | ---: |
-| [Lemegeton](https://github.com/Kyerstorm/Lemegeton) | Contributor project | 230 | 97,699 | 4,370,492 |
-| [PrivaCage](https://github.com/VireonNoctis/PrivaCage) | Owned | 246 | 48,342 | 2,603,139 |
-| [Wasting-Time-on.](https://github.com/VireonNoctis/Wasting-Time-on.) | Owned | 32 | 35,010 | 1,017,178 |
-| [VireonNoctis.github.io](https://github.com/VireonNoctis/VireonNoctis.github.io) | Owned | 94 | 4,039 | 355,507 |
-| [Universe-Explorer](https://github.com/VireonNoctis/Universe-Explorer) | Owned | 5 | 2,995 | 213,097 |
-| [Lunar-Css](https://github.com/VireonNoctis/Lunar-Css) | Owned | 13 | 7,090 | 212,935 |
-| [SkillTether](https://github.com/VireonNoctis/SkillTether) | Owned | 27 | 3,401 | 170,453 |
-| [VireonNoctis](https://github.com/VireonNoctis/VireonNoctis) | Owned | 7 | 1,081 | 48,929 |
+| [VireonNoctis](https://github.com/VireonNoctis/VireonNoctis) | Repository owner | 0 | 0 | 0 |
+| [SkillTether](https://github.com/VireonNoctis/SkillTether) | Repository owner | 0 | 0 | 0 |
+| [Universe-Explorer](https://github.com/VireonNoctis/Universe-Explorer) | Repository owner | 0 | 0 | 0 |
+| [VireonNoctis.github.io](https://github.com/VireonNoctis/VireonNoctis.github.io) | Repository owner | 0 | 0 | 0 |
+| [PrivaCage](https://github.com/VireonNoctis/PrivaCage) | Repository owner | 0 | 0 | 0 |
+| [FormatFossil](https://github.com/VireonNoctis/FormatFossil) | Repository owner | 0 | 0 | 0 |
+| [Envquake](https://github.com/VireonNoctis/Envquake) | Repository owner | 0 | 0 | 0 |
+| [TreeParity](https://github.com/VireonNoctis/TreeParity) | Repository owner | 0 | 0 | 0 |
 
 **Contributor projects included**
 
-| Project | Tracked files | Lines | Characters |
-| --- | ---: | ---: | ---: |
-| [Lemegeton](https://github.com/Kyerstorm/Lemegeton) | 230 | 97,699 | 4,370,492 |
+| Project | Role | Tracked files | Lines | Characters |
+| --- | --- | ---: | ---: | ---: |
+| [Lemegeton](https://github.com/Kyerstorm/Lemegeton) | Major contributor · co-owner | 0 | 0 | 0 |
 
-_Scope: Current default-branch snapshots of eligible public repositories owned by VireonNoctis plus public external repositories explicitly listed as contributor projects or discovered through commits attributed to the GitHub login. Counts cover tracked text-based source, configuration, and documentation; dependency/build/generated directories, lockfiles, binary files, and files over 1 MB are excluded. These repository-wide footprint totals are not line-by-line authorship attribution._
+_Scope: Current default-branch snapshots of eligible public repositories owned by VireonNoctis plus public external repositories explicitly listed as contributor projects or discovered through commits attributed to the GitHub login. Counts cover tracked text-based source, configuration, and documentation; dependency/build/generated directories, lockfiles, binary files, and files over 1 MB are excluded. These repository-wide footprint totals are not line-by-line authorship attribution. Language counts follow tracked file extensions; manually supplied project estimates are kept separate from repository scans._
 <!-- AUTO-CODE-STATS:END -->
 
 ### Contribution trail
