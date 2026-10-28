@@ -10,6 +10,7 @@ on:
     paths:
       - README.md
       - .github/scripts/update_repositories.py
+      - .github/scripts/update_code_stats.py
       - .github/workflows/repositories.yml
 
 permissions:
@@ -22,7 +23,7 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 20
     steps:
       - name: Check out profile README
         uses: actions/checkout@v4
@@ -37,7 +38,14 @@ jobs:
           GITHUB_OWNER: VireonNoctis
           README_PATH: README.md
         run: python .github/scripts/update_repositories.py
-      - name: Commit updated README when changed
+      - name: Generate code footprint across public projects
+        env:
+          GH_TOKEN: ${{ secrets.GH_REPOS_TOKEN || secrets.GITHUB_TOKEN }}
+          GITHUB_OWNER: VireonNoctis
+          STATS_JSON_PATH: code-stats.json
+          README_PATH: README.md
+        run: python .github/scripts/update_code_stats.py
+      - name: Commit refreshed README and code metrics
         run: |
           if git diff --quiet -- README.md; then
             echo 'Repository section is already up to date.'
@@ -45,6 +53,6 @@ jobs:
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add README.md
-          git commit -m 'docs: refresh GitHub repository list'
+          git add README.md code-stats.json
+          git commit -m 'docs: refresh repository and code metrics'
           git push

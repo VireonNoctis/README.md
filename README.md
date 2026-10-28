@@ -114,6 +114,14 @@ Project-specific framework stacks and status notes are documented in the curated
 <img width="90%" src="https://streak-stats.demolab.com?user=VireonNoctis&hide_border=true&background=050914&ring=8A9CFF&fire=9AD9FF&currStreakLabel=9AD9FF&sideLabels=C8D7EB&currStreakNum=EAF6FF&sideNums=EAF6FF&dates=8093AE" alt="GitHub contribution streak"/>
 </div>
 
+### Codebase footprint · automatically refreshed
+
+A measurable snapshot of the text-based code and documentation across public, original repositories. This is a current repository footprint—not a claim that every line was written by one person.
+
+<!-- AUTO-CODE-STATS:START -->
+_Code metrics are awaiting the first automated scan._
+<!-- AUTO-CODE-STATS:END -->
+
 ### Contribution trail
 GitHub Actions generates the contribution snake and refreshes it automatically. The first run may take a minute to publish the `output` branch.
 <div align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/VireonNoctis/README.md/output/github-contribution-grid-snake-dark.svg"/><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/VireonNoctis/README.md/output/github-contribution-grid-snake.svg"/><img width="100%" alt="Animated snake tracing the GitHub contribution graph" src="https://raw.githubusercontent.com/VireonNoctis/README.md/output/github-contribution-grid-snake.svg"/></picture></div>
