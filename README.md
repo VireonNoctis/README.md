@@ -125,11 +125,12 @@ A measurable snapshot of the text-based code and documentation across public, or
 | Measure | Current total |
 | --- | ---: |
 | Public repositories scanned | 12 |
-| Tracked text files | 448 |
-| Lines (including blank lines) | 102,454 |
-| Non-blank lines | 89,082 |
-| Characters (excluding line breaks) | 4,298,219 |
-| Words | 411,711 |
+| Repositories with scan failures | 1 |
+| Tracked text files | 459 |
+| Lines (including blank lines) | 104,280 |
+| Non-blank lines | 90,850 |
+| Characters (excluding line breaks) | 4,714,609 |
+| Words | 473,329 |
 | Stars across scanned projects | 1 |
 | Forks across scanned projects | 0 |
 
@@ -137,14 +138,14 @@ A measurable snapshot of the text-based code and documentation across public, or
 
 | Project | Files | Lines | Characters |
 | --- | ---: | ---: | ---: |
-| [PrivaCage](https://github.com/VireonNoctis/PrivaCage) | 235 | 47,233 | 2,219,758 |
+| [PrivaCage](https://github.com/VireonNoctis/PrivaCage) | 246 | 48,342 | 2,603,139 |
 | [Wasting-Time-on.](https://github.com/VireonNoctis/Wasting-Time-on.) | 32 | 35,010 | 1,017,178 |
-| [VireonNoctis.github.io](https://github.com/VireonNoctis/VireonNoctis.github.io) | 94 | 3,683 | 340,448 |
+| [VireonNoctis.github.io](https://github.com/VireonNoctis/VireonNoctis.github.io) | 94 | 3,977 | 351,851 |
 | [Lunar-Css](https://github.com/VireonNoctis/Lunar-Css) | 13 | 7,090 | 212,935 |
 | [SkillTether](https://github.com/VireonNoctis/SkillTether) | 27 | 3,401 | 170,453 |
-| [Universe-Explorer](https://github.com/VireonNoctis/Universe-Explorer) | 5 | 2,186 | 153,221 |
+| [Universe-Explorer](https://github.com/VireonNoctis/Universe-Explorer) | 5 | 2,426 | 169,565 |
 | [Anilist-Css](https://github.com/VireonNoctis/Anilist-Css) | 12 | 1,412 | 40,617 |
-| [VireonNoctis](https://github.com/VireonNoctis/VireonNoctis) | 6 | 602 | 30,675 |
+| [VireonNoctis](https://github.com/VireonNoctis/VireonNoctis) | 6 | 785 | 35,937 |
 
 _Scope: Default-branch snapshots of public, non-fork, non-archived repositories owned by VireonNoctis. Counts cover tracked text-based source, configuration and documentation; dependency/build/generated directories, lockfiles, binary files and files over 1 MB are excluded. These are current codebase-footprint totals, not a line-by-line authorship attribution._
 <!-- AUTO-CODE-STATS:END -->
