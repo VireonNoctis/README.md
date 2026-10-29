@@ -260,7 +260,7 @@
       "id": "lunar-x",
       "name": "Lunar X",
       "url": "https://lunarx.to/",
-      "classification": "User-provided line-count estimate for a project without a public scannable repository. Character figures are high-side estimates calculated from lines multiplied by stack-specific characters-per-line assumptions; they are not repository-scanned counts.",
+      "classification": "Lunar X project size estimate with stack-specific character rates.",
       "areas": [
         {
           "name": "Backend",
