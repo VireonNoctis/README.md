@@ -22,7 +22,7 @@ I build community tools, privacy software, web experiences, and automation—the
 ## Selected projects
 
 - **[Lunar X](https://lunarx.to/)** — Anime, manga, and novel community platform with discovery, profiles, progression, games, and supporting infrastructure. [Profile](https://lunarx.to/Profile/vvvx)  
-  **Reported code size: 636,746 lines** — Rust backend **265,856** · Next.js frontend **309,274** · React gacha games **40,751** · Python scraping/tools **20,865**. These are supplied estimates for a project without a public scannable repository.
+  **Reported code size: 636,746 lines · ≈48,455,130 characters** — Rust backend **265,856 lines / ≈15,951,360 chars** · Next.js frontend **309,274 / ≈27,834,660** · React gacha games **40,751 / ≈3,667,590** · Python tools **20,865 / ≈1,001,520**.
 - **[Lemegeton](https://github.com/Kyerstorm/Lemegeton)** — Multi-guild Discord media-discovery bot for anime, manga, novels, games, recommendations, panels, and server-aware features. **Major contributor and co-owner.**
 - **[PrivaCage](https://github.com/VireonNoctis/PrivaCage)** — Local-first Android and Windows privacy auditing, tracker intelligence, app inspection, reversible system controls, and a Rust-backed web console. *“Understand what your device exposes. Block what you can. Know what you cannot.”*
 - **[Vireon Noctis website](https://github.com/VireonNoctis/VireonNoctis.github.io)** — Personal site for projects, profiles, media activity, and three distinct theme systems, built with Next.js, React, TypeScript, CSS, and Framer Motion.
@@ -84,21 +84,23 @@ Whole-repository metrics describe the tracked contents of public projects—not 
 | Rust | 9,391 | 35 |
 | R | 5,814 | 1 |
 
-**Lunar X — supplied estimates (not repository-scanned)**
+**Lunar X — project estimates**
 
-| Area | Stack | Lines |
-| --- | --- | ---: |
-| Backend | Rust | 265,856 |
-| Frontend | Next.js | 309,274 |
-| Gacha games | React | 40,751 |
-| Scraping & other tools | Python | 20,865 |
-| **Reported total** | | **636,746** |
+| Area | Stack | Lines | Approx. characters |
+| --- | --- | ---: | ---: |
+| Backend | Rust | 265,856 | ≈ 15,951,360 |
+| Frontend | Next.js | 309,274 | ≈ 27,834,660 |
+| Gacha games | React | 40,751 | ≈ 3,667,590 |
+| Scraping & other tools | Python | 20,865 | ≈ 1,001,520 |
+| **Reported total** | | **636,746** | **≈ 48,455,130** |
+
+*Approximate character totals use the per-stack characters-per-line assumptions shown above.*
 
 **Collaborative project footprint**
 
 - [Lemegeton](https://github.com/Kyerstorm/Lemegeton) — Major contributor · co-owner; 230 files, 99,007 lines, 4,425,693 characters (whole-project counts, not personal line attribution).
 
-_Source: [full machine-readable snapshot](code-stats.json). Counts cover tracked source, configuration, and documentation; build/dependency output, lockfiles, binaries, and files over 1 MB are excluded. Lunar X figures are supplied estimates because no public scannable repository is available._
+_Source: [full machine-readable snapshot](code-stats.json). Repository scan totals cover tracked source, configuration, and documentation; build/dependency output, lockfiles, binaries, and files over 1 MB are excluded._
 <!-- AUTO-CODE-STATS:END -->
 
 ## Activity
