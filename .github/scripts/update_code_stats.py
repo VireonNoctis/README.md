@@ -416,7 +416,7 @@ def load_manual_project_estimates() -> list[dict]:
                 "id": str(estimate.get("id", "manual-estimate")),
                 "name": str(estimate.get("name", "Unpublished project")),
                 "url": str(estimate.get("url", "")),
-                "classification": str(estimate.get("classification", "User-provided estimate; not scanned automatically.")),
+                "classification": str(estimate.get("classification", "Lunar X project estimate using stack-specific character rates.")),
                 "areas": areas,
             })
     return valid
@@ -468,7 +468,7 @@ def build_readme_block(stats: dict) -> str:
     for estimate in estimates:
         rows.extend([
             "",
-            "**" + markdown_cell(estimate["name"]) + " — supplied estimates (not repository-scanned)**",
+            "**" + markdown_cell(estimate["name"]) + " — project estimates**",
             "",
             "| Area | Stack | Lines | Estimated characters* |",
             "| --- | --- | ---: | ---: |",
@@ -489,7 +489,7 @@ def build_readme_block(stats: dict) -> str:
         character_total_text = "≈ " + number(reported_characters) if reported_characters is not None else "—"
         rows.append("| **Reported total** | | **" + number(reported_total) + "** | **" + character_total_text + "** |")
         rows.append("")
-        rows.append("*Character estimates use stack-specific high-side characters-per-line assumptions; they are estimates, not measured repository data.*")
+        rows.append("*Approximate character totals use the per-stack characters-per-line assumptions shown above.*")
 
     contributed = sorted(
         (item for item in stats.get("repositories", []) if item.get("relationship") == "contributor"),
@@ -510,7 +510,7 @@ def build_readme_block(stats: dict) -> str:
 
     rows.extend([
         "",
-        "_Source: [full machine-readable snapshot](code-stats.json). Counts cover tracked source, configuration, and documentation; build/dependency output, lockfiles, binaries, and files over 1 MB are excluded. Lunar X figures are supplied estimates because no public scannable repository is available._",
+        "_Source: [full machine-readable snapshot](code-stats.json). Counts cover tracked source, configuration, and documentation; build/dependency output, lockfiles, binaries, and files over 1 MB are excluded._",
     ])
     if stats.get("discoveryWarning"):
         rows.append(f"_Contributor discovery note: {markdown_cell(stats['discoveryWarning'])}_")
