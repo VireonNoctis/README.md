@@ -95,8 +95,8 @@ These entries are refreshed automatically from GitHub repository metadata. Descr
 <!-- AUTO-REPOSITORIES:START -->
 | Repository | Description | GitHub-detected languages | Updated |
 | --- | --- | --- | --- |
-| [Universe-Explorer](https://github.com/VireonNoctis/Universe-Explorer) | Astra is a space-themed interactive astronomy explorer. | Ruby, JavaScript, CSS | 2026-10-28 |
-| [PrivaCage](https://github.com/VireonNoctis/PrivaCage) | Know what every app is doing to your device. Right now. In real time. | Kotlin, Rust, Go, TypeScript, Svelte, CSS, HTML | 2026-10-28 |
+| [PrivaCage](https://github.com/VireonNoctis/PrivaCage) | Know what every app is doing to your device. Right now. In real time. | Kotlin, Rust, Go, TypeScript, Svelte, CSS, HTML | 2026-10-29 |
+| [Universe-Explorer](https://github.com/VireonNoctis/Universe-Explorer) | Astra is a space-themed interactive astronomy explorer. | Ruby, JavaScript, CSS | 2026-10-29 |
 | [SkillTether](https://github.com/VireonNoctis/SkillTether) | Translate the words. Preserve the intent. | Python | 2026-10-27 |
 | [TreeParity](https://github.com/VireonNoctis/TreeParity) | An open-source conformance-testing laboratory that measures exactly what happens to a directory tree when it is transferred between operating systems, filesystems, archive formats, and synchronization tools. | Not detected | 2026-10-26 |
 | [Envquake](https://github.com/VireonNoctis/Envquake) | A CLI that discovers hidden environmental assumptions in software by rerunning tests under controlled variations of the system environment, identifying the exact conditions that cause behaviour to change. | Not detected | 2026-10-26 |
@@ -120,7 +120,7 @@ Project-specific framework stacks and status notes are documented in the curated
 A measurable snapshot of the text-based code and documentation across public repositories I own or contribute to, including collaborative projects such as Lemegeton. These are whole-repository footprint totals, not a claim that every line was written by one person.
 
 <!-- AUTO-CODE-STATS:START -->
-**Last scan:** 2026-10-28 UTC · 13 public repositories scanned (12 owned, 1 contributed).
+**Last scan:** 2026-10-29 UTC · 13 public repositories scanned (12 owned, 1 contributed).
 
 | Measure | Current total |
 | --- | ---: |
@@ -128,11 +128,11 @@ A measurable snapshot of the text-based code and documentation across public rep
 | Owned repositories scanned | 12 |
 | Contributor repositories scanned | 1 |
 | Repositories with scan failures | 1 |
-| Tracked text files | 690 |
-| Lines (including blank lines) | 206,621 |
-| Non-blank lines | 180,150 |
-| Characters (excluding line breaks) | 9,307,589 |
-| Words | 885,268 |
+| Tracked text files | 691 |
+| Lines (including blank lines) | 207,888 |
+| Non-blank lines | 181,330 |
+| Characters (excluding line breaks) | 9,364,112 |
+| Words | 890,599 |
 | Stars across scanned projects | 3 |
 | Forks across scanned projects | 1 |
 
@@ -140,17 +140,17 @@ A measurable snapshot of the text-based code and documentation across public rep
 
 | Language / format | Files | Lines | Characters | Words |
 | --- | ---: | ---: | ---: | ---: |
-| Python | 191 | 92,411 | 4,042,415 | 350,367 |
+| Python | 191 | 92,557 | 4,048,374 | 350,819 |
 | Batch | 4 | 20,568 | 759,435 | 68,460 |
-| Kotlin | 92 | 19,339 | 853,270 | 68,952 |
-| CSS | 37 | 15,127 | 578,521 | 52,929 |
-| Markdown | 113 | 12,696 | 1,244,471 | 176,876 |
-| TypeScript | 43 | 11,185 | 361,416 | 29,430 |
+| Kotlin | 92 | 19,772 | 871,578 | 70,420 |
+| CSS | 37 | 15,455 | 589,730 | 54,097 |
+| Markdown | 113 | 12,714 | 1,249,844 | 177,600 |
+| TypeScript | 43 | 11,282 | 364,629 | 29,698 |
 | Rust | 35 | 9,391 | 457,452 | 33,856 |
 | R | 1 | 5,814 | 72,809 | 7,710 |
-| Go | 14 | 4,729 | 192,344 | 20,750 |
-| JavaScript | 3 | 4,220 | 208,968 | 22,612 |
-| JSON | 25 | 3,450 | 103,865 | 8,284 |
+| Go | 14 | 4,872 | 197,141 | 21,268 |
+| JavaScript | 3 | 4,317 | 216,288 | 23,311 |
+| JSON | 25 | 3,450 | 103,870 | 8,284 |
 | Plain text | 14 | 1,951 | 103,396 | 15,522 |
 | Ruby | 1 | 1,709 | 111,231 | 11,742 |
 | YAML | 21 | 1,363 | 46,543 | 4,077 |
@@ -159,7 +159,7 @@ A measurable snapshot of the text-based code and documentation across public rep
 | TOML | 14 | 240 | 6,210 | 912 |
 | Environment config | 2 | 233 | 10,367 | 1,026 |
 | Shell | 3 | 193 | 6,791 | 623 |
-| SVG | 57 | 117 | 60,624 | 4,316 |
+| SVG | 58 | 122 | 60,963 | 4,350 |
 | Git config | 4 | 109 | 1,505 | 173 |
 | Config | 3 | 86 | 2,842 | 214 |
 | XML | 2 | 63 | 3,420 | 162 |
@@ -183,20 +183,20 @@ _User-provided line-count estimate for a project without a public scannable repo
 
 | Project | Relationship / role | Files | Lines | Characters |
 | --- | --- | ---: | ---: | ---: |
-| [Lemegeton](https://github.com/Kyerstorm/Lemegeton) | Major contributor · co-owner | 230 | 98,861 | 4,419,734 |
-| [PrivaCage](https://github.com/VireonNoctis/PrivaCage) | Repository owner | 246 | 48,342 | 2,603,139 |
+| [Lemegeton](https://github.com/Kyerstorm/Lemegeton) | Major contributor · co-owner | 230 | 99,007 | 4,425,693 |
+| [PrivaCage](https://github.com/VireonNoctis/PrivaCage) | Repository owner | 246 | 48,929 | 2,630,662 |
 | [Wasting-Time-on.](https://github.com/VireonNoctis/Wasting-Time-on.) | Repository owner | 32 | 35,010 | 1,017,178 |
-| [VireonNoctis.github.io](https://github.com/VireonNoctis/VireonNoctis.github.io) | Repository owner | 94 | 4,956 | 399,922 |
-| [Universe-Explorer](https://github.com/VireonNoctis/Universe-Explorer) | Repository owner | 5 | 3,482 | 251,594 |
+| [VireonNoctis.github.io](https://github.com/VireonNoctis/VireonNoctis.github.io) | Repository owner | 95 | 5,368 | 412,427 |
+| [Universe-Explorer](https://github.com/VireonNoctis/Universe-Explorer) | Repository owner | 5 | 3,604 | 262,115 |
 | [Lunar-Css](https://github.com/VireonNoctis/Lunar-Css) | Repository owner | 13 | 7,090 | 212,935 |
 | [SkillTether](https://github.com/VireonNoctis/SkillTether) | Repository owner | 27 | 3,401 | 170,453 |
-| [VireonNoctis](https://github.com/VireonNoctis/VireonNoctis) | Repository owner | 7 | 2,230 | 79,083 |
+| [VireonNoctis](https://github.com/VireonNoctis/VireonNoctis) | Repository owner | 7 | 2,230 | 79,098 |
 
 **Contributor projects included**
 
 | Project | Role | Tracked files | Lines | Characters |
 | --- | --- | ---: | ---: | ---: |
-| [Lemegeton](https://github.com/Kyerstorm/Lemegeton) | Major contributor · co-owner | 230 | 98,861 | 4,419,734 |
+| [Lemegeton](https://github.com/Kyerstorm/Lemegeton) | Major contributor · co-owner | 230 | 99,007 | 4,425,693 |
 
 _Scope: Current default-branch snapshots of eligible public repositories owned by VireonNoctis plus public external repositories explicitly listed as contributor projects or discovered through commits attributed to the GitHub login. Counts cover tracked text-based source, configuration, and documentation; dependency/build/generated directories, lockfiles, binary files, and files over 1 MB are excluded. These repository-wide footprint totals are not line-by-line authorship attribution. Language counts follow tracked file extensions; manually supplied project estimates are kept separate from repository scans._
 <!-- AUTO-CODE-STATS:END -->
