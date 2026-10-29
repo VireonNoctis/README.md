@@ -92,7 +92,9 @@ Whole-repository metrics describe the tracked contents of public projects—not 
 | Frontend | Next.js | 309,274 |
 | Gacha games | React | 40,751 |
 | Scraping & other tools | Python | 20,865 |
-| **Reported total** | | **636,746** |
+| Web graphics | WebGL | 20,657 |
+| 3D rendering | Three.js | 18,685 |
+| **Reported total** | | **676,088** |
 
 **Collaborative project footprint**
 

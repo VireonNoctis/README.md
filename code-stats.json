@@ -281,6 +281,16 @@
           "name": "Scraping & other tools",
           "stack": "Python",
           "lines": 20865
+        },
+        {
+          "name": "Web graphics",
+          "stack": "WebGL",
+          "lines": 20657
+        },
+        {
+          "name": "3D rendering",
+          "stack": "Three.js",
+          "lines": 18685
         }
       ]
     }
