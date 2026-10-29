@@ -398,17 +398,25 @@ def load_manual_project_estimates() -> list[dict]:
                 continue
             if line_count < 0:
                 continue
-            areas.append({
+            normalized_area = {
                 "name": str(area.get("name", "Unnamed area")),
                 "stack": str(area.get("stack", "Unspecified")),
                 "lines": line_count,
-            })
+            }
+            try:
+                chars_per_line = int(area.get("estimatedCharactersPerLine"))
+            except (TypeError, ValueError):
+                chars_per_line = -1
+            if chars_per_line >= 0:
+                normalized_area["estimatedCharactersPerLine"] = chars_per_line
+                normalized_area["characters"] = line_count * chars_per_line
+            areas.append(normalized_area)
         if areas:
             valid.append({
                 "id": str(estimate.get("id", "manual-estimate")),
                 "name": str(estimate.get("name", "Unpublished project")),
                 "url": str(estimate.get("url", "")),
-                "classification": str(estimate.get("classification", "User-provided estimate; not scanned automatically.")),
+                "classification": str(estimate.get("classification", "Lunar X project estimate using stack-specific character rates.")),
                 "areas": areas,
             })
     return valid
@@ -460,18 +468,28 @@ def build_readme_block(stats: dict) -> str:
     for estimate in estimates:
         rows.extend([
             "",
-            "**" + markdown_cell(estimate["name"]) + " — supplied estimates (not repository-scanned)**",
+            "**" + markdown_cell(estimate["name"]) + " — project estimates**",
             "",
-            "| Area | Stack | Lines |",
-            "| --- | --- | ---: |",
+            "| Area | Stack | Lines | Estimated characters* |",
+            "| --- | --- | ---: | ---: |",
         ])
         for area in estimate.get("areas", []):
+            characters = area.get("characters")
+            character_text = "≈ " + number(characters) if isinstance(characters, int) and characters >= 0 else "—"
             rows.append(
                 "| " + markdown_cell(area["name"]) + " | " + markdown_cell(area["stack"])
-                + " | " + number(area["lines"]) + " |"
+                + " | " + number(area["lines"]) + " | " + character_text + " |"
             )
         reported_total = sum(int(area["lines"]) for area in estimate.get("areas", []))
-        rows.append("| **Reported total** | | **" + number(reported_total) + "** |")
+        areas = estimate.get("areas", [])
+        all_character_estimates = all(
+            isinstance(area.get("characters"), int) and area["characters"] >= 0 for area in areas
+        )
+        reported_characters = sum(int(area["characters"]) for area in areas) if all_character_estimates else None
+        character_total_text = "≈ " + number(reported_characters) if reported_characters is not None else "—"
+        rows.append("| **Reported total** | | **" + number(reported_total) + "** | **" + character_total_text + "** |")
+        rows.append("")
+        rows.append("*Approximate character totals use the per-stack characters-per-line assumptions shown above.*")
 
     contributed = sorted(
         (item for item in stats.get("repositories", []) if item.get("relationship") == "contributor"),
@@ -492,7 +510,7 @@ def build_readme_block(stats: dict) -> str:
 
     rows.extend([
         "",
-        "_Source: [full machine-readable snapshot](code-stats.json). Counts cover tracked source, configuration, and documentation; build/dependency output, lockfiles, binaries, and files over 1 MB are excluded. Lunar X figures are supplied estimates because no public scannable repository is available._",
+        "_Source: [full machine-readable snapshot](code-stats.json). Counts cover tracked source, configuration, and documentation; build/dependency output, lockfiles, binaries, and files over 1 MB are excluded._",
     ])
     if stats.get("discoveryWarning"):
         rows.append(f"_Contributor discovery note: {markdown_cell(stats['discoveryWarning'])}_")

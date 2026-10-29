@@ -11,27 +11,31 @@
       "id": "lunar-x",
       "name": "Lunar X",
       "url": "https://lunarx.to/",
-      "classification": "User-provided line-count estimate for a project without a public scannable repository. Counts are displayed separately and are not mixed into automated GitHub repository totals.",
+      "classification": "Lunar X project size estimate with stack-specific character rates.",
       "areas": [
         {
           "name": "Backend",
           "stack": "Rust",
-          "lines": 265856
+          "lines": 265856,
+          "estimatedCharactersPerLine": 60
         },
         {
           "name": "Frontend",
           "stack": "Next.js",
-          "lines": 309274
+          "lines": 309274,
+          "estimatedCharactersPerLine": 90
         },
         {
           "name": "Gacha games",
           "stack": "React",
-          "lines": 40751
+          "lines": 40751,
+          "estimatedCharactersPerLine": 90
         },
         {
           "name": "Scraping & other tools",
           "stack": "Python",
-          "lines": 20865
+          "lines": 20865,
+          "estimatedCharactersPerLine": 48
         }
       ]
     }
