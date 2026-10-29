@@ -26,6 +26,12 @@ def request_json(url, token):
 def safe_cell(value):
     return ' '.join(str(value or '').replace('|', '\\|').split())
 
+def short_description(value, limit=112):
+    description = safe_cell(value)
+    if len(description) <= limit:
+        return description
+    return description[:limit - 1].rsplit(' ', 1)[0].rstrip() + '…'
+
 def main():
     token = os.environ.get('GH_TOKEN') or os.environ.get('GITHUB_TOKEN')
     if not token:
@@ -68,7 +74,7 @@ def main():
     for repo in candidates:
         name = repo.get('name', 'Repository')
         url = repo.get('html_url', '')
-        description = safe_cell(repo.get('description'))
+        description = short_description(repo.get('description'))
         try:
             languages = request_json(repo['languages_url'], token)
             stack = ', '.join(sorted(languages, key=languages.get, reverse=True)) or 'Not detected'

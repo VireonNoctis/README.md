@@ -423,74 +423,55 @@ def markdown_cell(value: object) -> str:
 
 
 def build_readme_block(stats: dict) -> str:
+    """Render a compact footprint summary while keeping detailed data in code-stats.json."""
     totals = stats["totals"]
     generated_date = (stats.get("generatedAt") or "")[:10] or "date unavailable"
     rows = [
-        f"**Last scan:** {generated_date} UTC · {number(totals['repositories'])} public repositories scanned "
+        f"**Snapshot: {generated_date} UTC** · {number(totals['repositories'])} public repositories "
         f"({number(totals['ownedRepositories'])} owned, {number(totals['contributorRepositories'])} contributed).",
         "",
-        "| Measure | Current total |",
+        "| Measure | Total |",
         "| --- | ---: |",
-        f"| Public repositories scanned | {number(totals['repositories'])} |",
-        f"| Owned repositories scanned | {number(totals['ownedRepositories'])} |",
-        f"| Contributor repositories scanned | {number(totals['contributorRepositories'])} |",
-        f"| Repositories with scan failures | {number(totals['failedRepositories'])} |",
         f"| Tracked text files | {number(totals['files'])} |",
-        f"| Lines (including blank lines) | {number(totals['lines'])} |",
+        f"| Lines | {number(totals['lines'])} |",
         f"| Non-blank lines | {number(totals['nonblankLines'])} |",
         f"| Characters (excluding line breaks) | {number(totals['characters'])} |",
         f"| Words | {number(totals['words'])} |",
-        f"| Stars across scanned projects | {number(totals['stars'])} |",
-        f"| Forks across scanned projects | {number(totals['forks'])} |",
+        f"| Stars / forks | {number(totals['stars'])} / {number(totals['forks'])} |",
+        f"| Repositories with scan failures | {number(totals['failedRepositories'])} |",
     ]
 
-    languages = stats.get("languages", [])
+    languages = sorted(stats.get("languages", []), key=lambda item: item.get("lines", 0), reverse=True)[:8]
     if languages:
         rows.extend([
             "",
-            "**Language and file-format footprint**",
+            "**Largest language and format groups**",
             "",
-            "| Language / format | Files | Lines | Characters | Words |",
-            "| --- | ---: | ---: | ---: | ---: |",
+            "| Language / format | Lines | Files |",
+            "| --- | ---: | ---: |",
         ])
         for language in languages:
             rows.append(
-                "| " + markdown_cell(language["language"]) + " | " + number(language["files"]) + " | "
-                + number(language["lines"]) + " | " + number(language["characters"]) + " | " + number(language["words"]) + " |"
+                "| " + markdown_cell(language["language"]) + " | " + number(language["lines"])
+                + " | " + number(language["files"]) + " |"
             )
 
     estimates = stats.get("manualProjectEstimates", [])
     for estimate in estimates:
         rows.extend([
             "",
-            "**" + markdown_cell(estimate["name"]) + " — supplied project estimates**",
+            "**" + markdown_cell(estimate["name"]) + " — supplied estimates (not repository-scanned)**",
             "",
-            "| Subsystem | Stack | Lines |",
+            "| Area | Stack | Lines |",
             "| --- | --- | ---: |",
         ])
         for area in estimate.get("areas", []):
-            rows.append("| " + markdown_cell(area["name"]) + " | " + markdown_cell(area["stack"]) + " | " + number(area["lines"]) + " |")
+            rows.append(
+                "| " + markdown_cell(area["name"]) + " | " + markdown_cell(area["stack"])
+                + " | " + number(area["lines"]) + " |"
+            )
         reported_total = sum(int(area["lines"]) for area in estimate.get("areas", []))
         rows.append("| **Reported total** | | **" + number(reported_total) + "** |")
-        rows.append("_" + markdown_cell(estimate.get("classification", "User-provided estimate; not scanned automatically.")) + "_")
-
-    projects = sorted(stats.get("repositories", []), key=lambda item: item.get("characters", 0), reverse=True)[:8]
-    if projects:
-        rows.extend([
-            "",
-            "**Largest current text footprints**",
-            "",
-            "| Project | Relationship / role | Files | Lines | Characters |",
-            "| --- | --- | ---: | ---: | ---: |",
-        ])
-        for project in projects:
-            name = markdown_cell(project.get("name", "Repository"))
-            url = project.get("url", "")
-            relationship = markdown_cell(project.get("role") or ("Repository owner" if project.get("relationship") == "owned" else "Contributor"))
-            rows.append(
-                f"| [{name}]({url}) | {relationship} | {number(project['files'])} | "
-                f"{number(project['lines'])} | {number(project['characters'])} |"
-            )
 
     contributed = sorted(
         (item for item in stats.get("repositories", []) if item.get("relationship") == "contributor"),
@@ -498,24 +479,20 @@ def build_readme_block(stats: dict) -> str:
         reverse=True,
     )
     if contributed:
-        rows.extend([
-            "",
-            "**Contributor projects included**",
-            "",
-            "| Project | Role | Tracked files | Lines | Characters |",
-            "| --- | --- | ---: | ---: | ---: |",
-        ])
+        rows.extend(["", "**Collaborative project footprint**", ""])
         for project in contributed:
             name = markdown_cell(project.get("name", "Repository"))
             url = project.get("url", "")
+            role = markdown_cell(project.get("role") or "Contributor")
             rows.append(
-                f"| [{name}]({url}) | {markdown_cell(project.get('role') or 'Major contributor')} | {number(project['files'])} | "
-                f"{number(project['lines'])} | {number(project['characters'])} |"
+                f"- [{name}]({url}) — {role}; {number(project['files'])} files, "
+                f"{number(project['lines'])} lines, {number(project['characters'])} characters "
+                "(whole-project counts, not personal line attribution)."
             )
 
     rows.extend([
         "",
-        f"_Scope: {markdown_cell(stats['scope'])}_",
+        "_Source: [full machine-readable snapshot](code-stats.json). Counts cover tracked source, configuration, and documentation; build/dependency output, lockfiles, binaries, and files over 1 MB are excluded. Lunar X figures are supplied estimates because no public scannable repository is available._",
     ])
     if stats.get("discoveryWarning"):
         rows.append(f"_Contributor discovery note: {markdown_cell(stats['discoveryWarning'])}_")
