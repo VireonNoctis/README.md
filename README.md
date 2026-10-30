@@ -15,6 +15,13 @@
   </p>
 </div>
 
+<!-- REPOSITORY-HEALTH:START -->
+[![Code quality](https://github.com/VireonNoctis/VireonNoctis/actions/workflows/repository-health.yml/badge.svg?branch=main)](https://github.com/VireonNoctis/VireonNoctis/actions/workflows/repository-health.yml)
+[![Top language](https://img.shields.io/github/languages/top/VireonNoctis/VireonNoctis?style=flat-square)](https://github.com/VireonNoctis/VireonNoctis)
+[![Languages](https://img.shields.io/github/languages/count/VireonNoctis/VireonNoctis?style=flat-square)](https://github.com/VireonNoctis/VireonNoctis)
+[![Automated tech stack](https://img.shields.io/badge/tech_stack-auto--detected-64748b?style=flat-square)](TECH_STACK.md)
+<!-- REPOSITORY-HEALTH:END -->
+
 ## About
 
 I build community tools, privacy software, web experiences, and automation—then refine the details until the system makes sense. Outside code: anime, music, and too many open tabs.
