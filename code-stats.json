@@ -1,38 +1,38 @@
 {
   "schemaVersion": 3,
   "owner": "VireonNoctis",
-  "generatedAt": "2026-10-30T08:46:05Z",
+  "generatedAt": "2026-10-31T08:33:18Z",
   "scope": "Current default-branch snapshots of eligible public repositories owned by VireonNoctis plus public external repositories explicitly listed as contributor projects or discovered through commits attributed to the GitHub login. Counts cover tracked text-based source, configuration, and documentation; dependency/build/generated directories, lockfiles, binary files, and files over 1 MB are excluded. These repository-wide footprint totals are not line-by-line authorship attribution. Language counts follow tracked file extensions; manually supplied project estimates are kept separate from repository scans.",
   "discoveryWarning": null,
   "totals": {
-    "files": 716,
-    "lines": 208976,
-    "nonblankLines": 181881,
-    "characters": 9437830,
-    "words": 899875,
+    "files": 771,
+    "lines": 213029,
+    "nonblankLines": 185272,
+    "characters": 9610053,
+    "words": 919042,
     "stars": 3,
     "forks": 1,
-    "repositories": 13,
-    "ownedRepositories": 12,
+    "repositories": 14,
+    "ownedRepositories": 13,
     "contributorRepositories": 1,
     "failedRepositories": 1
   },
   "ownedTotals": {
-    "files": 489,
-    "lines": 115887,
-    "nonblankLines": 101375,
-    "characters": 5297828,
-    "words": 529054,
+    "files": 542,
+    "lines": 120128,
+    "nonblankLines": 104871,
+    "characters": 5495229,
+    "words": 551715,
     "stars": 1,
     "forks": 0,
-    "repositories": 12
+    "repositories": 13
   },
   "contributedTotals": {
-    "files": 227,
-    "lines": 93089,
-    "nonblankLines": 80506,
-    "characters": 4140002,
-    "words": 370821,
+    "files": 229,
+    "lines": 92901,
+    "nonblankLines": 80401,
+    "characters": 4114824,
+    "words": 367327,
     "stars": 2,
     "forks": 1,
     "repositories": 1
@@ -40,11 +40,11 @@
   "languages": [
     {
       "language": "Python",
-      "files": 204,
-      "lines": 93047,
-      "nonblankLines": 80310,
-      "characters": 4026339,
-      "words": 350275
+      "files": 214,
+      "lines": 94325,
+      "nonblankLines": 81467,
+      "characters": 4060958,
+      "words": 351763
     },
     {
       "language": "Batch",
@@ -72,11 +72,11 @@
     },
     {
       "language": "Markdown",
-      "files": 119,
-      "lines": 13242,
-      "nonblankLines": 10016,
-      "characters": 1305896,
-      "words": 184957
+      "files": 145,
+      "lines": 14893,
+      "nonblankLines": 11166,
+      "characters": 1403007,
+      "words": 198544
     },
     {
       "language": "TypeScript",
@@ -112,11 +112,11 @@
     },
     {
       "language": "JSON",
-      "files": 26,
-      "lines": 3547,
-      "nonblankLines": 3547,
-      "characters": 108376,
-      "words": 8769
+      "files": 30,
+      "lines": 3788,
+      "nonblankLines": 3788,
+      "characters": 117634,
+      "words": 9720
     },
     {
       "language": "JavaScript",
@@ -135,20 +135,20 @@
       "words": 15522
     },
     {
+      "language": "YAML",
+      "files": 31,
+      "lines": 1733,
+      "nonblankLines": 1608,
+      "characters": 57435,
+      "words": 5145
+    },
+    {
       "language": "Ruby",
       "files": 1,
       "lines": 1709,
       "nonblankLines": 1615,
       "characters": 111231,
       "words": 11742
-    },
-    {
-      "language": "YAML",
-      "files": 21,
-      "lines": 1419,
-      "nonblankLines": 1313,
-      "characters": 48860,
-      "words": 4300
     },
     {
       "language": "Svelte",
@@ -160,27 +160,35 @@
     },
     {
       "language": "HTML",
+      "files": 4,
+      "lines": 821,
+      "nonblankLines": 781,
+      "characters": 40037,
+      "words": 3416
+    },
+    {
+      "language": "Git config",
+      "files": 6,
+      "lines": 264,
+      "nonblankLines": 228,
+      "characters": 3036,
+      "words": 384
+    },
+    {
+      "language": "Environment config",
       "files": 3,
-      "lines": 431,
-      "nonblankLines": 392,
-      "characters": 19426,
-      "words": 1406
+      "lines": 240,
+      "nonblankLines": 207,
+      "characters": 10848,
+      "words": 1098
     },
     {
       "language": "TOML",
       "files": 14,
       "lines": 240,
       "nonblankLines": 215,
-      "characters": 6232,
-      "words": 913
-    },
-    {
-      "language": "Environment config",
-      "files": 2,
-      "lines": 237,
-      "nonblankLines": 204,
-      "characters": 10635,
-      "words": 1063
+      "characters": 6282,
+      "words": 915
     },
     {
       "language": "Shell",
@@ -197,14 +205,6 @@
       "nonblankLines": 130,
       "characters": 62009,
       "words": 4452
-    },
-    {
-      "language": "Git config",
-      "files": 4,
-      "lines": 109,
-      "nonblankLines": 88,
-      "characters": 1505,
-      "words": 173
     },
     {
       "language": "Config",
@@ -229,6 +229,14 @@
       "nonblankLines": 49,
       "characters": 2262,
       "words": 212
+    },
+    {
+      "language": "EditorConfig",
+      "files": 1,
+      "lines": 21,
+      "nonblankLines": 16,
+      "characters": 255,
+      "words": 38
     },
     {
       "language": "Docker config",
@@ -304,27 +312,27 @@
       "relationship": "contributor",
       "role": "Major contributor · co-owner",
       "contributionNote": "Major contributor and co-owner of the project; scan the current multi-guild default branch alongside repositories owned by VireonNoctis.",
-      "files": 227,
-      "lines": 93089,
-      "nonblankLines": 80506,
-      "characters": 4140002,
-      "words": 370821,
+      "files": 229,
+      "lines": 92901,
+      "nonblankLines": 80401,
+      "characters": 4114824,
+      "words": 367327,
       "languages": [
         {
           "language": "Python",
           "files": 172,
-          "lines": 84230,
-          "nonblankLines": 72789,
-          "characters": 3660175,
-          "words": 317951
+          "lines": 83887,
+          "nonblankLines": 72547,
+          "characters": 3630842,
+          "words": 313957
         },
         {
           "language": "Markdown",
-          "files": 12,
-          "lines": 3319,
-          "nonblankLines": 2629,
-          "characters": 212089,
-          "words": 29442
+          "files": 13,
+          "lines": 3411,
+          "nonblankLines": 2707,
+          "characters": 214371,
+          "words": 29769
         },
         {
           "language": "JavaScript",
@@ -367,20 +375,20 @@
           "words": 2389
         },
         {
+          "language": "YAML",
+          "files": 4,
+          "lines": 303,
+          "nonblankLines": 288,
+          "characters": 10529,
+          "words": 838
+        },
+        {
           "language": "HTML",
           "files": 1,
           "lines": 247,
           "nonblankLines": 228,
           "characters": 12983,
           "words": 905
-        },
-        {
-          "language": "YAML",
-          "files": 3,
-          "lines": 240,
-          "nonblankLines": 229,
-          "characters": 8656,
-          "words": 665
         },
         {
           "language": "Environment config",
@@ -800,27 +808,27 @@
       "relationship": "owned",
       "role": "Repository owner",
       "contributionNote": "Repository owned by the account.",
-      "files": 49,
-      "lines": 8803,
-      "nonblankLines": 7402,
-      "characters": 427971,
-      "words": 44059,
+      "files": 59,
+      "lines": 10366,
+      "nonblankLines": 8803,
+      "characters": 508320,
+      "words": 51924,
       "languages": [
         {
           "language": "Python",
-          "files": 27,
-          "lines": 6925,
-          "nonblankLines": 5897,
-          "characters": 288314,
-          "words": 25061
+          "files": 34,
+          "lines": 7833,
+          "nonblankLines": 6663,
+          "characters": 325082,
+          "words": 28096
         },
         {
           "language": "Markdown",
-          "files": 15,
-          "lines": 903,
-          "nonblankLines": 661,
-          "characters": 91755,
-          "words": 11990
+          "files": 16,
+          "lines": 976,
+          "nonblankLines": 715,
+          "characters": 106739,
+          "words": 13938
         },
         {
           "language": "Plain text",
@@ -831,12 +839,20 @@
           "words": 5644
         },
         {
+          "language": "HTML",
+          "files": 1,
+          "lines": 390,
+          "nonblankLines": 389,
+          "characters": 20611,
+          "words": 2010
+        },
+        {
           "language": "JSON",
-          "files": 3,
-          "lines": 174,
-          "nonblankLines": 174,
-          "characters": 9229,
-          "words": 945
+          "files": 4,
+          "lines": 366,
+          "nonblankLines": 366,
+          "characters": 17165,
+          "words": 1815
         },
         {
           "language": "YAML",
@@ -851,8 +867,8 @@
           "files": 1,
           "lines": 29,
           "nonblankLines": 23,
-          "characters": 722,
-          "words": 72
+          "characters": 772,
+          "words": 74
         }
       ],
       "stars": 0,
@@ -959,6 +975,80 @@
       "forks": 0
     },
     {
+      "name": "SwarmForge",
+      "fullName": "VireonNoctis/SwarmForge",
+      "url": "https://github.com/VireonNoctis/SwarmForge",
+      "branch": "main",
+      "relationship": "owned",
+      "role": "Repository owner",
+      "contributionNote": "Repository owned by the account.",
+      "files": 40,
+      "lines": 2046,
+      "nonblankLines": 1522,
+      "characters": 93603,
+      "words": 12551,
+      "languages": [
+        {
+          "language": "Markdown",
+          "files": 23,
+          "lines": 1408,
+          "nonblankLines": 952,
+          "characters": 77742,
+          "words": 11043
+        },
+        {
+          "language": "Python",
+          "files": 2,
+          "lines": 222,
+          "nonblankLines": 185,
+          "characters": 7705,
+          "words": 644
+        },
+        {
+          "language": "YAML",
+          "files": 8,
+          "lines": 188,
+          "nonblankLines": 177,
+          "characters": 4837,
+          "words": 499
+        },
+        {
+          "language": "Git config",
+          "files": 2,
+          "lines": 155,
+          "nonblankLines": 140,
+          "characters": 1531,
+          "words": 211
+        },
+        {
+          "language": "JSON",
+          "files": 3,
+          "lines": 49,
+          "nonblankLines": 49,
+          "characters": 1320,
+          "words": 81
+        },
+        {
+          "language": "EditorConfig",
+          "files": 1,
+          "lines": 21,
+          "nonblankLines": 16,
+          "characters": 255,
+          "words": 38
+        },
+        {
+          "language": "Environment config",
+          "files": 1,
+          "lines": 3,
+          "nonblankLines": 3,
+          "characters": 213,
+          "words": 35
+        }
+      ],
+      "stars": 0,
+      "forks": 0
+    },
+    {
       "name": "VireonNoctis",
       "fullName": "VireonNoctis/VireonNoctis",
       "url": "https://github.com/VireonNoctis/VireonNoctis",
@@ -969,7 +1059,7 @@
       "files": 7,
       "lines": 2125,
       "nonblankLines": 2032,
-      "characters": 69301,
+      "characters": 69303,
       "words": 6318,
       "languages": [
         {
@@ -977,7 +1067,7 @@
           "files": 2,
           "lines": 1235,
           "nonblankLines": 1235,
-          "characters": 28352,
+          "characters": 28354,
           "words": 2423
         },
         {
@@ -1016,11 +1106,11 @@
       "relationship": "owned",
       "role": "Repository owner",
       "contributionNote": "Repository owned by the account.",
-      "files": 12,
-      "lines": 1412,
-      "nonblankLines": 1222,
-      "characters": 40617,
-      "words": 4032,
+      "files": 15,
+      "lines": 2044,
+      "nonblankLines": 1795,
+      "characters": 64064,
+      "words": 6277,
       "languages": [
         {
           "language": "CSS",
@@ -1031,12 +1121,28 @@
           "words": 3445
         },
         {
-          "language": "Markdown",
+          "language": "Python",
           "files": 1,
-          "lines": 276,
-          "nonblankLines": 180,
-          "characters": 3549,
-          "words": 587
+          "lines": 491,
+          "nonblankLines": 448,
+          "characters": 19479,
+          "words": 1803
+        },
+        {
+          "language": "Markdown",
+          "files": 2,
+          "lines": 354,
+          "nonblankLines": 246,
+          "characters": 5652,
+          "words": 856
+        },
+        {
+          "language": "YAML",
+          "files": 1,
+          "lines": 63,
+          "nonblankLines": 59,
+          "characters": 1865,
+          "words": 173
         }
       ],
       "stars": 0,

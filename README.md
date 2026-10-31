@@ -43,7 +43,8 @@ Repository names, descriptions, detected languages, and update dates below refre
 <!-- AUTO-REPOSITORIES:START -->
 | Repository | Description | GitHub-detected languages | Updated |
 | --- | --- | --- | --- |
-| [SkillTether](https://github.com/VireonNoctis/SkillTether) | Translate the words. Preserve the intent. | Python | 2026-10-30 |
+| [SwarmForge](https://github.com/VireonNoctis/SwarmForge) | Turn Claude, ChatGPT, and other AI assistants into a unified AI development swarm. | Python | 2026-10-30 |
+| [SkillTether](https://github.com/VireonNoctis/SkillTether) | Translate the words. Preserve the intent. | Python, HTML | 2026-10-30 |
 | [Universe-Explorer](https://github.com/VireonNoctis/Universe-Explorer) | Astra is a space-themed interactive astronomy explorer. | Ruby, JavaScript, CSS | 2026-10-29 |
 | [PrivaCage](https://github.com/VireonNoctis/PrivaCage) | Know what every app is doing to your device. Right now. In real time. | Kotlin, Rust, Go, TypeScript, Svelte, CSS, HTML | 2026-10-29 |
 | [TreeParity](https://github.com/VireonNoctis/TreeParity) | An open-source conformance-testing laboratory that measures exactly what happens to a directory tree when it… | Not detected | 2026-10-26 |
@@ -59,15 +60,15 @@ Repository names, descriptions, detected languages, and update dates below refre
 Whole-repository metrics describe the tracked contents of public projects—not individual authorship. The detailed JSON snapshot is available in [code-stats.json](code-stats.json).
 
 <!-- AUTO-CODE-STATS:START -->
-**Snapshot: 2026-10-30 UTC** · 13 public repositories (12 owned, 1 contributed).
+**Snapshot: 2026-10-31 UTC** · 14 public repositories (13 owned, 1 contributed).
 
 | Measure | Total |
 | --- | ---: |
-| Tracked text files | 716 |
-| Lines | 208,976 |
-| Non-blank lines | 181,881 |
-| Characters (excluding line breaks) | 9,437,830 |
-| Words | 899,875 |
+| Tracked text files | 771 |
+| Lines | 213,029 |
+| Non-blank lines | 185,272 |
+| Characters (excluding line breaks) | 9,610,053 |
+| Words | 919,042 |
 | Stars / forks | 3 / 1 |
 | Repositories with scan failures | 1 |
 
@@ -75,11 +76,11 @@ Whole-repository metrics describe the tracked contents of public projects—not 
 
 | Language / format | Lines | Files |
 | --- | ---: | ---: |
-| Python | 93,047 | 204 |
+| Python | 94,325 | 214 |
 | Batch | 20,568 | 4 |
 | Kotlin | 19,772 | 92 |
 | CSS | 16,538 | 40 |
-| Markdown | 13,242 | 119 |
+| Markdown | 14,893 | 145 |
 | TypeScript | 12,015 | 44 |
 | Rust | 9,392 | 35 |
 | R | 5,814 | 1 |
@@ -98,7 +99,7 @@ Whole-repository metrics describe the tracked contents of public projects—not 
 
 **Collaborative project footprint**
 
-- [Lemegeton](https://github.com/Kyerstorm/Lemegeton) — Major contributor · co-owner; 227 files, 93,089 lines, 4,140,002 characters (whole-project counts, not personal line attribution).
+- [Lemegeton](https://github.com/Kyerstorm/Lemegeton) — Major contributor · co-owner; 229 files, 92,901 lines, 4,114,824 characters (whole-project counts, not personal line attribution).
 
 _Source: [full machine-readable snapshot](code-stats.json). Counts cover tracked source, configuration, and documentation; build/dependency output, lockfiles, binaries, and files over 1 MB are excluded. Lunar X figures are supplied estimates because no public scannable repository is available._
 <!-- AUTO-CODE-STATS:END -->
